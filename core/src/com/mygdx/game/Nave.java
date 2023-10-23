@@ -12,13 +12,14 @@ public abstract class Nave {
 	private int vidas;
 	private float xVel;
 	private float yVel;
+	private boolean herido;
+	private int tiempoHeridoMax;
 	private Sprite spr;
 	private Sound sonidoHerido;
 	private Sound sonidoDisparo;
 	private Texture texturaDisparo;
-	private boolean herido;
-	private int tiempoHeridoMax;
 	private int tiempoHerido;
+	private boolean destruida;
 	
 	public void setVidas(int vidas) {
 		this.vidas = vidas;
@@ -64,6 +65,10 @@ public abstract class Nave {
 		this.texturaDisparo = texturaDisparo;
 	}
 	
+	public void setDestruida(boolean destruida){
+		this.destruida = destruida;
+	}
+	
 	public int getVidas() {
 		return this.vidas;
 	}
@@ -102,6 +107,10 @@ public abstract class Nave {
 	
 	public Sound getSonidoDisparo(){
 		return this.sonidoDisparo;
+	}
+	
+	public boolean getDestruida(){
+		return this.destruida;
 	}
 	
 	/*public void getTexturaDisparo(Texture texturaDisparo){
@@ -143,7 +152,7 @@ public abstract class Nave {
         }
     }
     
-    public boolean verificarColisionNave() {
+    public boolean verificarColisionNave(Ball2 b) {
     	if(!herido && b.getArea().overlaps(spr.getBoundingRectangle())){
         	// rebote
             if (xVel ==0) xVel += b.getXSpeed()/2;
@@ -166,7 +175,6 @@ public abstract class Nave {
   		    tiempoHerido=tiempoHeridoMax;
   		    sonidoHerido.play();
             if (vidas<=0) 
-          	    destruida = true; 
             return true;
         }
         return false;
