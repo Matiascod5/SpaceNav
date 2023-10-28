@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 
 
@@ -18,5 +19,17 @@ public class nave_default extends Nave{
 		setTexturaDisparo(new Texture(Gdx.files.internal("Rocket2.png")));
 		setHerido(false);
 		setTiempoHeridoMax(50);
+	}
+	
+	public void disparar() {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {         
+			Bullet  bala = new Bullet(getX()+ getWidth()/2-5,getY()+ getHeight()-5,0,3,getTexturaDisparo());
+		    agregarBala(bala);
+		    getSonidoDisparo().play();
+	    }
+	}
+	
+	public void efectoEspecial() {
+		
 	}
 }

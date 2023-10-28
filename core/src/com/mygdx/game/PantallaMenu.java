@@ -29,24 +29,10 @@ public class PantallaMenu implements Screen {
 		game.getBatch().begin();
 		game.getFont().draw(game.getBatch(), "Bienvenido a Space Navigation !", 140, 400);
 		game.getFont().draw(game.getBatch(), "Pincha en cualquier lado o presiona cualquier tecla para comenzar ...", 100, 300);
-		game.getFont().draw(game.getBatch(), "Opcion 1", 100, 200);
-		game.getFont().draw(game.getBatch(), "Opcion 1", 100, 150);
-		game.getFont().draw(game.getBatch(), "Opcion 1", 100, 100);
 	
 		game.getBatch().end();
-		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-			Screen ss = new PantallaMercado(game);
-			ss.resize(1200, 800);
-			game.setScreen(ss);
-			dispose();
-		}
-		
-		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			game.getFont().draw(game.getBatch(), "¿Estas seguro de que quieres salir?", 80, 200);
-		}
 
-		if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+		if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
 			Screen ss = new PantallaJuego(game,1,3,0,1,1,10);
 			ss.resize(1200, 800);
 			game.setScreen(ss);
