@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 
 public class PantallaJuego implements Screen {
@@ -30,7 +31,7 @@ public class PantallaJuego implements Screen {
 	//private Texture fondo;
 	//private int numRandom = 0;
 	//private Heavymachingan heavy = new Heavymachingan();
-	private Nave nave = new Nave_StarWars();
+	private Nave nave = new nave_default();
 	//private asteroid asteroides = new asteroid();
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
@@ -84,13 +85,13 @@ public class PantallaJuego implements Screen {
 		}
 	}
 
-	public void winScreen(){
-		Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, 
+	/*public void winScreen(){
+		//Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, 
 					velXAsteroides+3, velYAsteroides+3, cantAsteroides+10);
 			ss.resize(1200, 800);
 			game.setScreen(ss);
 			dispose();
-	}
+	}*/
 
     
 	public void dibujaEncabezado() {
@@ -103,6 +104,7 @@ public class PantallaJuego implements Screen {
 	@Override
 	public void render(float delta) {
 		  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		  //ScreenUtils.clear(0, 0, 0.2f, 1);
           batch.begin();
 		  
 			//backgroundSprite.draw(game.getBatch());
@@ -110,24 +112,25 @@ public class PantallaJuego implements Screen {
 		  dibujaEncabezado();
 	      if (!nave.getHerido()) {
 		    // colisiones entre balas y asteroides y su destruccion 
-			if(Colisiones.verificarColisionEnemigoBala(score, explosionSound, batch)) //winScreen();
+			Colisiones.verificarColisionEnemigoBala(score, explosionSound, batch); //winScreen();
 			
 		    //actualizar movimiento de asteroides dentro del area
 			Colisiones.actualizarEnemigos(batch);
 
 		    //colisiones entre asteroides y sus rebotes 
 			Colisiones.colisionesEnemigos();
-	      }
-	      
-	      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    	nave.disparar(batch, Colisiones);
-	      }
+		}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+	    		nave.disparar(batch, Colisiones);
+	      	}
 	      
 		  Colisiones.actualizarBalas(batch);
 	      nave.movimiento(batch, this);
 
+		  Colisiones.mostrarEnemigo(batch);
+
 	      //dibujar asteroides y manejar colision con nave
-	      if (Colisiones.colisionesNaveAsteroide(nave)) gameOver();
+	      Colisiones.colisionesNaveAsteroide(nave); //gameOver();
 	      
 		  /*
 	      if (nave.getDestruido()) {
@@ -135,19 +138,21 @@ public class PantallaJuego implements Screen {
   		  }*/
 	      batch.end();
 	      //nivel completado
-	      if (balls1.size()==0) {
+	      /*if (balls1.size()==0) {
 			Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, 
 					velXAsteroides+3, velYAsteroides+3, cantAsteroides+10);
 			ss.resize(1200, 800);
 			game.setScreen(ss);
 			dispose();
-		  }
+		  }*/
+		  
 	      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 				//Screen ss = new PantallaMercado(game);
 				//ss.resize(1200, 800);
 				//game.setScreen(ss);
 				dispose();
 			}
+	      
 	    	 
 	}
     

@@ -1,14 +1,10 @@
 package com.mygdx.game;
-import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.graphics.Color;
-import java.util.ArrayList;
 
 public class PantallaMenu implements Screen {
 
@@ -140,7 +136,7 @@ public class PantallaMenu implements Screen {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+		backgroundTexture.dispose();
 	}
    
 }
