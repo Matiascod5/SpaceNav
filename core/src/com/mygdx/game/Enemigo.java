@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class Enemigo {
 	private int x;
 	private int y;
-	private int xVel = 5;
-	private int yVel = 5;
+	private int xVel;
+	private int yVel;
 	private Sprite sprite;
 	private int cantEnemigos;
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
@@ -64,6 +64,7 @@ public abstract class Enemigo {
          
 	}
 	
+	/*
 	public void añadirEnemigo(Enemigo enemigo, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
 	    for (int i = 0; i < cantEnemigos; i++) {
 	        //Ball2 bb = new Ball2(r.nextInt((int)Gdx.graphics.getWidth()),	50+r.nextInt((int)Gdx.graphics.getHeight()-50),	20+r.nextInt(10), xVel+r.nextInt(4), yVel+r.nextInt(4), 
@@ -71,12 +72,13 @@ public abstract class Enemigo {
 	  	    balls1.add(enemigo);
 	  	    balls2.add(enemigo);
 	  	}
-	}
+	}*/
 
+	/*
 	public void mostrarEnemigo(SpriteBatch batch){
 		Sprite sprite = getSprite();
 		sprite.draw(batch);
-	}
+	}*/
 
 /*
 	public void movimiento() {
@@ -100,31 +102,26 @@ public abstract class Enemigo {
     	}
     }*/
 	
+	/*
 	public void draw(SpriteBatch batch) {
     	sprite.draw(batch);
-    }
-	//public abstract Rectangle getArea();
-	//public abstract int getxVel();
-	//public abstract void setxVel(int xVel);
-	//public abstract int getyVel();
-	//public abstract void setyVel(int yVel);
+    }*/
+
 	public abstract void movimiento();
+	
+	public void colisionesEnemigos(ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
+		for (int i=0;i<balls1.size();i++) {
+		    Enemigo ball1 = balls1.get(i);   
+		    for (int j=0;j<balls2.size();j++) {
+		        Enemigo ball2 = balls2.get(j); 
+		        if (i<j) {
+		        	ball1.checkCollision(ball2);
+		     
+		        }
+		    }
+		} 
 
-	/*
-	
-	public void movimiento() {
-        x += getxVel();
-        y += getyVel();
-
-        if (x+getxVel() < 0 || x+getxVel()+sprite.getWidth() > Gdx.graphics.getWidth())
-        	setxVel(getxVel() * -1);
-        if (y+getyVel() < 0 || y+getyVel()+sprite.getHeight() > Gdx.graphics.getHeight())
-        	setyVel(getyVel() * -1);
-        sprite.setPosition(x, y);
-    }
-	*/
-	
-	
+	}
 
 	public void verificarColisionNave(Nave nave, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
     	for (int i = 0; i < balls1.size(); i++) {
@@ -151,7 +148,6 @@ public abstract class Enemigo {
             b2.setyVel(- b2.getyVel()); 
         }
     }
-	
 	public Rectangle getArea() {
     	return sprite.getBoundingRectangle();
     }

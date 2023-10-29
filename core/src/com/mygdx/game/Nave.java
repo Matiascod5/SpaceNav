@@ -72,11 +72,11 @@ public abstract class Nave {
         }*/
     }
     
-    public void disparar(SpriteBatch batch, PantallaJuego juego) {
+    public void disparar(SpriteBatch batch, Colisiones Colisiones) {
 		//x = sprite.getX() + sprite.getWidth()/2-5;
 		//y = sprite.getY()+ sprite.getHeight()-5;
     	Disparo bala = new disparo_default(spr.getX() + spr.getWidth()/2-5, spr.getY()+ spr.getHeight()-5);
-	    juego.agregarBala(bala);
+	    Colisiones.agregarBala(bala);
 		bala.mostrar(batch);
 	    bala.getSonidoDisparo().play();
 	   
@@ -89,6 +89,7 @@ public abstract class Nave {
   	    }
     }
     
+	/*
     public boolean verificarColisionNave(Enemigo b) {
     	if(!herido && b.getArea().overlaps(spr.getBoundingRectangle())){
         	// rebote
@@ -115,7 +116,7 @@ public abstract class Nave {
             return true;
         }
         return false;
-    }
+    }*/
 
 	    public boolean verificarColisionNaveItem(Item b) {
     	if(!herido && b.getArea().overlaps(spr.getBoundingRectangle())){
@@ -160,6 +161,10 @@ public abstract class Nave {
 	public void setHerido(boolean herido) {
 		this.herido = herido;
 	}
+
+	public void setTiempoHerido(int tiempoHerido) {
+		this.tiempoHerido = tiempoHerido;
+	}
 	
 	public void setTiempoHeridoMax(int tiempoHeridoMax) {
 		this.tiempoHeridoMax = tiempoHeridoMax;
@@ -203,6 +208,10 @@ public abstract class Nave {
 	
 	public boolean getHerido() {
 		return this.herido;
+	}
+
+	public int getTiempoHerido() {
+		return this.tiempoHerido;
 	}
 	
 	public int getTiempoHeridoMax() {
