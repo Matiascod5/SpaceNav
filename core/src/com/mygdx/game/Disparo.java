@@ -19,8 +19,8 @@ public abstract class Disparo {
 	public Disparo(float x, float y, int xSpeed, int ySpeed, Texture tx, Sound sonidoDisparo, Texture texturaDisparo) {
 	    this.sprite = new Sprite(tx);
 	    sprite.setPosition(x, y);
-		this.x = x;
-		this.y = y;
+		//this.x = x;
+		//this.y = y;
 	    this.xVel = xSpeed;
 	    this.yVel = ySpeed;
 		this.sonidoDisparo = sonidoDisparo;
@@ -114,16 +114,7 @@ public abstract class Disparo {
 		return this.y;
 	}
 
-	public void movimiento(){
-	        sprite.setPosition(sprite.getX()+xVel, sprite.getY()+yVel);
-	        if (sprite.getX() < 0 || sprite.getX()+sprite.getWidth() > Gdx.graphics.getWidth()) {
-	            destroyed = true;
-	        }
-	        if (sprite.getY() < 0 || sprite.getY()+sprite.getHeight() > Gdx.graphics.getHeight()) {
-	        	destroyed = true;
-	        }
-	        
-	}
+	public abstract void movimiento();
 	
 	public abstract void efectoEspecial();
 	

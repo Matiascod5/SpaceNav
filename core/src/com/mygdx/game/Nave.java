@@ -73,7 +73,9 @@ public abstract class Nave {
     }
     
     public void disparar(SpriteBatch batch, PantallaJuego juego) {
-    	Disparo bala = new disparo_default();
+		//x = sprite.getX() + sprite.getWidth()/2-5;
+		//y = sprite.getY()+ sprite.getHeight()-5;
+    	Disparo bala = new disparo_default(spr.getX() + spr.getWidth()/2-5, spr.getY()+ spr.getHeight()-5);
 	    juego.agregarBala(bala);
 		bala.mostrar(batch);
 	    bala.getSonidoDisparo().play();

@@ -32,13 +32,13 @@ public class nave_default extends Nave{
 	    }
 	
 	
-	public void disparar() {
+	/*public void disparar() {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {         
 			Bullet  bala = new Bullet(ggetYetX()+ getWidth()/2-5,()+ getHeight()-5,0,3,getTexturaDisparo());
 		    agregarBala(bala);
 		    getSonidoDisparo().play();
 	    }
-	}
+	}*/
 	
 	public void efectoEspecial() {
 		
