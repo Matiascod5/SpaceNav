@@ -4,30 +4,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 
-public class PantallaGameOver implements Screen {
+public class PantallaPausa implements Screen {
 
 	private SpaceNavigation game;
 	private OrthographicCamera camera;
-	private Texture backgroundTexture;
-	private Sprite backgroundSprite;
+    private PantallaJuego pantallaJuego;
 
-	public PantallaGameOver(SpaceNavigation game) {
+	public PantallaPausa(SpaceNavigation game, PantallaJuego pantallaJuego) {
 		this.game = game;
         
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1200, 800);
-		
-        // Carga la textura de fondo
-        backgroundTexture = new Texture(Gdx.files.internal("FondoMercado.jpg"));
-
-        // Configura el Sprite de fondo
-        backgroundSprite = new Sprite(backgroundTexture);
-        backgroundSprite.setSize(1200, 800); 
 	}
 
 	@Override
@@ -38,18 +28,25 @@ public class PantallaGameOver implements Screen {
 		game.getBatch().setProjectionMatrix(camera.combined);
 
 		game.getBatch().begin();
-		backgroundSprite.draw(game.getBatch());
-		game.getFont().draw(game.getBatch(), "Game Over !!! ", 120, 400,400,1,true);
-		game.getFont().draw(game.getBatch(), "Pincha en cualquier lado para reiniciar ...", 100, 300);
+		game.getFont().draw(game.getBatch(), "Juego en Pausa ", 200, 800,800,1,true);
+		game.getFont().draw(game.getBatch(), "Presione Enter para resumir", 120, 700);
+		game.getFont().draw(game.getBatch(), "Presione R para Reiniciar", 100, 250);
+		game.getFont().draw(game.getBatch(), "Volver al menu principal", 100, 200);
 	
 		game.getBatch().end();
-
-		if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)) {
-			Screen ss = new PantallaJuego(game,1,3,0,1,1,10);
+		
+		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			Screen ss = new PantallaMenu(game);
 			ss.resize(1200, 800);
 			game.setScreen(ss);
 			dispose();
 		}
+		
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            // El jugador presionó "Enter" para reanudar el juego.
+            // Cambia de nuevo a PantallaJuego y pasa la instancia de PantallaJuego.
+            game.setScreen(pantallaJuego);
+        }
 	}
  
 	
