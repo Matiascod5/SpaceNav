@@ -121,7 +121,7 @@ public class PantallaJuego implements Screen {
 			Colisiones.colisionesEnemigos();
 		}
 			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    		nave.disparar(batch, Colisiones, nave.getSprite());
+	    		nave.disparar(batch, Colisiones);
 	      	}
 	      
 		  Colisiones.actualizarBalas(batch);

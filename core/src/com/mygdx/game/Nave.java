@@ -82,7 +82,7 @@ public abstract class Nave {
 	   
     }*/
 
-	public abstract void disparar(SpriteBatch batch, Colisiones colisiones, Sprite sprite);
+	public abstract void disparar(SpriteBatch batch, Colisiones colisiones);
     
 	
     public void mostrarDisparo(SpriteBatch batch, ArrayList<Disparo> balas) {

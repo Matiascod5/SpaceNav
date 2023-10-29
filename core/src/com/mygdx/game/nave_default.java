@@ -32,10 +32,10 @@ public class nave_default extends Nave{
 	    }  
 	}
 
-	public void disparar(SpriteBatch batch, Colisiones Colisiones, Sprite spr) {
+	public void disparar(SpriteBatch batch, Colisiones Colisiones) {
 		//x = sprite.getX() + sprite.getWidth()/2-5;
 		//y = sprite.getY()+ sprite.getHeight()-5;
-        Disparo bala = new disparo_default(spr.getX() + spr.getWidth()/2-5, spr.getY()+ spr.getHeight()-5);
+        Disparo bala = new disparo_default(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5);
 	    Colisiones.agregarBala(bala);
 		bala.mostrar(batch);
 	    bala.getSonidoDisparo().play();
@@ -54,5 +54,5 @@ public class nave_default extends Nave{
 	public void efectoEspecial() {
 		
 	}
-	
+
 }
