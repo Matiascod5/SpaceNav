@@ -123,7 +123,7 @@ public abstract class Enemigo {
 
 	}
 
-	public void verificarColisionNave(Nave nave, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
+	/*public void verificarColisionNave(Nave nave, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
     	for (int i = 0; i < balls1.size(); i++) {
     		Enemigo b=balls1.get(i);
     		if (nave.verificarColisionNave(b)) {
@@ -132,7 +132,7 @@ public abstract class Enemigo {
              	i--;
     		}
     	}
-    }
+    }*/
 	
 	public void checkCollision(Enemigo b2) {
         if(sprite.getBoundingRectangle().overlaps(b2.sprite.getBoundingRectangle())){

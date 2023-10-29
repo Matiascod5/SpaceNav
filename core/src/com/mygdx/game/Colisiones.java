@@ -17,9 +17,10 @@ public class Colisiones{
 	private int cantEnemigos;
 
 	public Colisiones(){
-		balls1 = new ArrayList<>();
-		balls2 = new ArrayList<>();
-		balas = new ArrayList<>();
+		this.balls1 = new ArrayList<>();
+		this.balls2 = new ArrayList<>();
+		this.balas = new ArrayList<>();
+		this.cantEnemigos = 0;
 	}
 
 	public void añadirEnemigo(Enemigo enemigo) {
@@ -28,6 +29,7 @@ public class Colisiones{
 	  	            //new Texture(Gdx.files.internal("aGreyMedium4.png")));	   
 	  	    balls1.add(enemigo);
 	  	    balls2.add(enemigo);
+			this.cantEnemigos++;
 	  	//}
 	}
 
@@ -48,7 +50,6 @@ public class Colisiones{
 		        Enemigo ball2 = balls2.get(j); 
 		        if (i<j) {
 		        	ball1.checkCollision(ball2);
-		     
 		        }
 		    }
 		} 
@@ -92,7 +93,7 @@ public class Colisiones{
 		 }
 	}
 
-	public void verificarColisionEnemigoBala(int score, Sound explosionSound, SpriteBatch batch){
+	public boolean verificarColisionEnemigoBala(int score, Sound explosionSound, SpriteBatch batch){
 		for (int i = 0; i < balas.size(); i++){
 			Disparo b = balas.get(i);
 			b.movimiento();
@@ -100,8 +101,12 @@ public class Colisiones{
 		    if (b.verificarDestruccion()) {
 		        balas.remove(b);
 		        i--; //para no saltarse 1 tras eliminar del arraylist
+				this.cantEnemigos--;
+				if (cantEnemigos <= 0) return true;
 		    }
 		}
+
+		return false;
 	}
 
 	public void actualizarBalas(SpriteBatch batch){
@@ -146,6 +151,7 @@ public class Colisiones{
 				balls1.remove(i);
 	        	balls2.remove(i);
 	        	i--;
+				this.cantEnemigos--;
             	if (nave.getVidas()<=0) return true;
 
 			}
