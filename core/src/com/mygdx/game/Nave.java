@@ -72,15 +72,17 @@ public abstract class Nave {
         }*/
     }
     
-    public void disparar(SpriteBatch batch, Colisiones Colisiones) {
+    /*public void disparar(SpriteBatch batch, Colisiones Colisiones) {
 		//x = sprite.getX() + sprite.getWidth()/2-5;
 		//y = sprite.getY()+ sprite.getHeight()-5;
-    	Disparo bala = new disparo_default(spr.getX() + spr.getWidth()/2-5, spr.getY()+ spr.getHeight()-5);
+    	Disparo bala = new DisparoStarWars(spr.getX() + spr.getWidth()/2-5, spr.getY()+ spr.getHeight()-5);
 	    Colisiones.agregarBala(bala);
 		bala.mostrar(batch);
 	    bala.getSonidoDisparo().play();
 	   
-    }
+    }*/
+
+	public abstract void disparar(SpriteBatch batch, Colisiones colisiones, Sprite sprite);
     
 	
     public void mostrarDisparo(SpriteBatch batch, ArrayList<Disparo> balas) {

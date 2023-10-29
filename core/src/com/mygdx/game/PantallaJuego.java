@@ -31,7 +31,7 @@ public class PantallaJuego implements Screen {
 	//private Texture fondo;
 	//private int numRandom = 0;
 	//private Heavymachingan heavy = new Heavymachingan();
-	private Nave nave = new nave_default();
+	private Nave nave = new nave_default(); // editar nave aqui
 	//private asteroid asteroides = new asteroid();
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
@@ -121,7 +121,7 @@ public class PantallaJuego implements Screen {
 			Colisiones.colisionesEnemigos();
 		}
 			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    		nave.disparar(batch, Colisiones);
+	    		nave.disparar(batch, Colisiones, nave.getSprite());
 	      	}
 	      
 		  Colisiones.actualizarBalas(batch);
