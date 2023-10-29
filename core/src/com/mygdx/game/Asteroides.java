@@ -9,14 +9,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Asteroides extends Enemigo{
-	private int x;
-	private int y;
-	private int xVel;
-	private int yVel;
+	int x = getX();
+	int y = getY();
 	//private Sprite sprite;
 	
 	public Asteroides(Sprite sprite) {
-		super(sprite);
+		super(sprite, 1, 1);
 	}
 
 	//private int cantAsteroides;
@@ -62,18 +60,17 @@ public abstract class Asteroides extends Enemigo{
 	}*/
 	
 	//movimiento
-	/*
-    public void movimiento(Sprite sprite) {
+
+	public void movimiento() {
         x += getxVel();
         y += getyVel();
 
-        if (x+getxVel() < 0 || x+getxVel()+sprite.getWidth() > Gdx.graphics.getWidth())
+        if (x+getxVel() < 0 || x+getxVel()+getSprite().getWidth() > Gdx.graphics.getWidth())
         	setxVel(getxVel() * -1);
-        if (y+getyVel() < 0 || y+getyVel()+sprite.getHeight() > Gdx.graphics.getHeight())
+        if (y+getyVel() < 0 || y+getyVel()+getSprite().getHeight() > Gdx.graphics.getHeight())
         	setyVel(getyVel() * -1);
-        sprite.setPosition(x, y);
-    }*/
-    
+        getSprite().setPosition(x, y);
+    }
     public abstract void sonido();
     
     

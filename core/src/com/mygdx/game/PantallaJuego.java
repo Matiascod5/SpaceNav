@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
@@ -27,16 +28,16 @@ public class PantallaJuego implements Screen {
 	//private int velYAsteroides; 
 	private int cantAsteroides;
 	//private Texture fondo;
-	
+	//private int numRandom = 0;
+	//private Heavymachingan heavy = new Heavymachingan();
 	private Nave nave = new nave_default();
 	//private asteroid asteroides = new asteroid();
 	private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	private  ArrayList<Enemigo> balls2 = new ArrayList<>();
-	private  ArrayList<Bullet> balas = nave.balas;
+	private  ArrayList<Disparo> balas = new ArrayList<>();
 
 
-	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score,  
-			int velXAsteroides, int velYAsteroides, int cantAsteroides) {
+	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score, int velXAsteroides, int velYAsteroides, int cantAsteroides){
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
@@ -83,7 +84,28 @@ public class PantallaJuego implements Screen {
 		  dibujaEncabezado();
 	      if (!nave.getHerido()) {
 		      // colisiones entre balas y asteroides y su destruccion 
-	    	  
+			  /*
+			  	Random rand = new Random();
+			  	int numRandom = rand.nextInt(1-1000);
+				if(numRandom == 4){
+					Heavymachingan h = heavy;
+					h.mover();
+				}*/
+			  
+				//Disparo b = balas.get(i);
+				//b.movimiento();
+				for (int i = 0; i < balas.size(); i++){
+					Disparo b = balas.get(i);
+					b.movimiento();
+					b.verificarColisionEnemigo(b, balls1, balls2, score, explosionSound, batch);
+		    		if (b.verificarDestruccion()) {
+		        		balas.remove(b);
+		        		i--; //para no saltarse 1 tras eliminar del arraylist
+		    		}
+				}
+
+			  
+	    	  /*
 	    	  for (int i = 0; i < balas.size(); i++) {
 		            Bullet b = balas.get(i);
 		            b.update();
@@ -102,12 +124,22 @@ public class PantallaJuego implements Screen {
 		                balas.remove(b);
 		                i--; //para no saltarse 1 tras eliminar del arraylist
 		            }
-		      }
+		      }*/
 		      //actualizar movimiento de asteroides dentro del area
+
+			  for (int i = 0 ; i < balls1.size() ; i++){
+				Enemigo b = balls1.get(i);
+				b.movimiento();
+				//b.movimiento(b.getSprite(), b.getX(), b.getY());
+				//Sprite a = b.getSprite();
+				//a.draw(batch);
+				b.mostrarEnemigo(batch);
+			  }
+			  /*
 		      for (Enemigo ball : balls1) {
-		          ball.movimiento();
+		          ball.movimiento(ball.getSprite());
 		          //ball.draw(batch);
-		      }
+		      }*/
 		      //colisiones entre asteroides y sus rebotes  
 		      for (int i=0;i<balls1.size();i++) {
 		    	Enemigo ball1 = balls1.get(i);   
@@ -122,10 +154,15 @@ public class PantallaJuego implements Screen {
 	      }
 	      
 	      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    	  nave.disparar(batch, this);
+	    	nave.disparar(batch, this);
 	      }
 	      
-	      nave.mostrarDisparo(batch);
+		  for (int i = 0 ; i < balas.size() ; i++){
+			Disparo b = balas.get(i);
+			b.movimiento();
+			b.mostrar(batch);
+		  }
+	      nave.mostrarDisparo(batch, balas);
 	      
 	      nave.movimiento(batch, this);
 	      //dibujar asteroides y manejar colision con nave
@@ -172,8 +209,9 @@ public class PantallaJuego implements Screen {
 	    	 
 	}
     
-    public boolean agregarBala(Bullet bb) {
-    	return balas.add(bb);
+	
+    public void agregarBala(Disparo bb) {
+    	this.balas.add(bb);
     }
 	
 	@Override

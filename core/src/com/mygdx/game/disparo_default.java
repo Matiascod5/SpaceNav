@@ -2,49 +2,37 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 
-public abstract class disparo_default implements Disparo{
-	private int xSpeed;
-	private int ySpeed;
-	private boolean destroyed = false;
-	private Sprite spr;
+package com.mygdx.game;
+
+import java.util.ArrayList;
+
+public class disparo_default extends Disparo{
+	float x = getX();
+	float y = getY();
+	
+	
 	
 	public disparo_default() {
-		this.xSpeed = 0;
-		this.ySpeed = 0;
-		spr = new Sprite() ;
-		spr.setPosition(0, 0);
+		super( x+ getWidth()/2-5,getY()+ getHeight()-5,0,3,new Texture(Gdx.files.internal("Rocket2.png")), Gdx.audio.newSound(Gdx.files.internal("pop-sound.mp3")), new Texture(Gdx.files.internal("Rocket2.png")));
+		/*setxVel(0);
+		setyVel(0);
+		setSprite(new Texture(Gdx.files.internal("Rocket2.png")));
+		getSprite().setPosition(0, 0);
+		setSonidoDisparo(Gdx.audio.newSound(Gdx.files.internal("pop-sound.mp3")));
+		setTexturaDisparo(new Texture(Gdx.files.internal("Rocket2.png")));*/
 	}
-	
-	public void mostrar() {
-		spr.draw(batch);
-	}
-	public void movimiento() {
-		
-	}
-	public void actualizarMov() {
-		spr.setPosition(spr.getX()+xSpeed, spr.getY()+ySpeed);
-        if (spr.getX() < 0 || spr.getX()+spr.getWidth() > Gdx.graphics.getWidth()) {
-            destroyed = true;
-        }
-        if (spr.getY() < 0 || spr.getY()+spr.getHeight() > Gdx.graphics.getHeight()) {
-        	destroyed = true;
-        }
-		
-	}
-	public boolean verificarColision() {
-		if(spr.getBoundingRectangle().overlaps(b2.getArea())){
-        	// Se destruyen ambos
-            this.destroyed = true;
-            return true;
 
-        }
-        return false;
-		
+	public void efectoEspecial(){
+
 	}
-	public boolean verificarDestruccion() {
-		return false;
-		
+
+	public void movimiento(){
+
 	}
-	public abstract void efectoEspecial();
 }

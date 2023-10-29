@@ -31,6 +31,7 @@ public class Ball2 {
         this.setXSpeed(xSpeed);
         this.setySpeed(ySpeed);
     }
+    
     public void update() {
         x += getXSpeed();
         y += getySpeed();

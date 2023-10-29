@@ -8,21 +8,27 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
+
 public abstract class Enemigo {
 	private int x;
 	private int y;
-	private int xVel;
-	private int yVel;
+	private int xVel = 5;
+	private int yVel = 5;
 	private Sprite sprite;
 	private int cantEnemigos;
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
 	
-	public Enemigo(Sprite sprite) {
+	public Enemigo(Sprite sprite, int xVel, int yVel) {
 		Random r = new Random();
-		setSprite(sprite);
-		setX(r.nextInt((int)Gdx.graphics.getWidth()));
-		setY(50+r.nextInt((int)Gdx.graphics.getHeight()-50));
+		this.sprite = sprite;
+		//setSprite(sprite);
+		this.x = r.nextInt((int)Gdx.graphics.getWidth());
+		//setX(r.nextInt((int)Gdx.graphics.getWidth()));
+		this.y = 50+r.nextInt((int)Gdx.graphics.getHeight()-50);
+		//setY(50+r.nextInt((int)Gdx.graphics.getHeight()-50));
+		this.xVel = xVel;
+		this.yVel = yVel;
 		
 		int size = 20+r.nextInt(10);
 		
@@ -66,7 +72,25 @@ public abstract class Enemigo {
 	  	    balls2.add(enemigo);
 	  	}
 	}
+
+	public void mostrarEnemigo(SpriteBatch batch){
+		Sprite sprite = getSprite();
+		sprite.draw(batch);
+	}
+
+/*
+	public void movimiento() {
+        x += getxVel();
+        y += getyVel();
+
+        if (x+getxVel() < 0 || x+getxVel()+sprite.getWidth() > Gdx.graphics.getWidth())
+        	setxVel(getxVel() * -1);
+        if (y+getyVel() < 0 || y+getyVel()+sprite.getHeight() > Gdx.graphics.getHeight())
+        	setyVel(getyVel() * -1);
+        sprite.setPosition(x, y);
+    }*/
 	
+	/*
 	public void mostrarEnemigo(SpriteBatch batch, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
     	for (int i = 0; i < balls1.size(); i++) {
     	  	  //mostrarAsteroide();
@@ -74,7 +98,7 @@ public abstract class Enemigo {
     	  	    Sprite b = enemigo.getSprite();
     	  	    b.draw(batch);
     	}
-    }
+    }*/
 	
 	public void draw(SpriteBatch batch) {
     	sprite.draw(batch);
@@ -84,7 +108,9 @@ public abstract class Enemigo {
 	//public abstract void setxVel(int xVel);
 	//public abstract int getyVel();
 	//public abstract void setyVel(int yVel);
-	//public abstract void movimiento(Sprite sprite);
+	public abstract void movimiento();
+
+	/*
 	
 	public void movimiento() {
         x += getxVel();
@@ -96,6 +122,7 @@ public abstract class Enemigo {
         	setyVel(getyVel() * -1);
         sprite.setPosition(x, y);
     }
+	*/
 	
 	
 
@@ -161,11 +188,11 @@ public abstract class Enemigo {
     }
     
     public int getxVel() {
-		return xVel;
+		return this.xVel;
 	}
     
 	public int getyVel() {
-		return yVel;
+		return this.yVel;
 	}
 	
     public Sprite getSprite() {

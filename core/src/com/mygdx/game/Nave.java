@@ -17,12 +17,24 @@ public abstract class Nave {
 	private boolean herido;
 	private int tiempoHeridoMax;
 	private Sprite spr;
+	private Disparo disparo;
 	private Sound sonidoHerido;
-	private Sound sonidoDisparo;
-	private Texture texturaDisparo;
 	private int tiempoHerido;
 	private boolean destruido;
-	public  ArrayList<Bullet> balas = new ArrayList<>();
+	//public  ArrayList<Disparo> balas = new ArrayList<>();
+
+	public Nave(int vidas, int xVel, int yVel, Texture tx, Sound sonidoHerido, int tiempoHeridoMax){
+		this.vidas = vidas;
+		this.xVel = xVel;
+		this.yVel = yVel;
+		this.herido = false;
+		this.tiempoHeridoMax = tiempoHeridoMax; 
+		this.spr = new Sprite(tx);
+		this.sonidoHerido = sonidoHerido;
+		this.destruido = false;
+		setSpritePosition(Gdx.graphics.getWidth()/2-50,30);
+		setSpriteBounds(Gdx.graphics.getWidth()/2-50,30,45,45);
+	}
 	
     public void movimiento(SpriteBatch batch, PantallaJuego juego) {
     	float x =  spr.getX();
@@ -61,15 +73,17 @@ public abstract class Nave {
     }
     
     public void disparar(SpriteBatch batch, PantallaJuego juego) {
-    	Bullet  bala = new Bullet(spr.getX()+spr.getWidth()/2-5,spr.getY()+ spr.getHeight()-5,0,3,texturaDisparo);
+    	Disparo bala = new disparo_default();
 	    juego.agregarBala(bala);
-	    getSonidoDisparo().play();
-	    mostrarDisparo(batch);
+		bala.mostrar(batch);
+	    bala.getSonidoDisparo().play();
+	   
     }
     
-    public void mostrarDisparo(SpriteBatch batch) {
-    	for (Bullet b : balas) {       
-    		b.draw(batch);
+	
+    public void mostrarDisparo(SpriteBatch batch, ArrayList<Disparo> balas) {
+    	for (Disparo b : balas) {       
+    		b.mostrar(batch);
   	    }
     }
     
@@ -100,12 +114,34 @@ public abstract class Nave {
         }
         return false;
     }
+
+	    public boolean verificarColisionNaveItem(Item b) {
+    	if(!herido && b.getArea().overlaps(spr.getBoundingRectangle())){
+        	// rebote
+			//this = b.efectoEspecial(this);
+			b.dispose();
+            // despegar sprites
+           int cont = 0;
+            while (b.getArea().overlaps(spr.getBoundingRectangle()) && cont<xVel) {
+               spr.setX(spr.getX()+Math.signum(xVel));
+            } 
+        	//actualizar vidas y herir
+            vidas--;
+            herido = true;
+  		    tiempoHerido=tiempoHeridoMax;
+  		    sonidoHerido.play();
+            if (vidas<=0) 
+            return true;
+        }
+        return false;
+    }
     
     public abstract void efectoEspecial();
     
-    public boolean agregarBala(Bullet bb) {
+	/*
+    public boolean agregarBala(Disparo bb) {
     	return balas.add(bb);
-    }
+    }*/
     
     public void setVidas(int vidas) {
 		this.vidas = vidas;
@@ -143,16 +179,12 @@ public abstract class Nave {
 		this.sonidoHerido = sonidoHerido;
 	}
 	
-	public void setSonidoDisparo(Sound sonidoDisparo){
-		this.sonidoDisparo = sonidoDisparo;
-	}
-	
-	public void setTexturaDisparo(Texture texturaDisparo){
-		this.texturaDisparo = texturaDisparo;
-	}
-	
 	public void setDestruido(boolean destruido){
 		this.destruido = destruido;
+	}
+
+	public void setDisparo(Disparo disparo){
+		this.disparo = disparo;
 	}
 	
 	public int getVidas() {
@@ -199,15 +231,12 @@ public abstract class Nave {
 		return this.sonidoHerido;
 	}
 	
-	public Sound getSonidoDisparo(){
-		return this.sonidoDisparo;
-	}
-	
 	public boolean getDestruido(){
 		return this.destruido;
 	}
-	
-	public Texture getTexturaDisparo(){
-		return this.texturaDisparo;
+
+	public Disparo getDisparo(){
+		return this.disparo;
 	}
+	
 }
