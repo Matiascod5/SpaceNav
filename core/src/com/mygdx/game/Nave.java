@@ -74,6 +74,17 @@ public abstract class Nave {
 	      getSonidoDisparo().play();
         }*/
     }
+
+	public void movimiento() {
+	    getSprite().setPosition(getSprite().getX()+getxVel(), getSprite().getY()+getyVel());
+	    if (getSprite().getX() < 0 || getSprite().getX()+getSprite().getWidth() > Gdx.graphics.getWidth()) {
+	        setDestruido(true);
+	    }
+	    
+		if (getSprite().getY() < 0 || getSprite().getY()+getSprite().getHeight() > Gdx.graphics.getHeight()) {
+	        setDestruido(true);
+	    }  
+	}
     
     /*public void disparar(SpriteBatch batch, Colisiones Colisiones) {
 		//x = sprite.getX() + sprite.getWidth()/2-5;

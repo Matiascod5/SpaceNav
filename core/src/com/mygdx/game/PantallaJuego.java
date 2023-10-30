@@ -40,6 +40,7 @@ public class PantallaJuego implements Screen {
 	//private  ArrayList<Disparo> balas = new ArrayList<>();
 	private Texture backgroundTexture;
 	private Sprite backgroundSprite;
+	private boolean musicaActivada = true;
 
 	private Colisiones Colisiones = new Colisiones();
 
@@ -57,9 +58,6 @@ public class PantallaJuego implements Screen {
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
-		//this.velXAsteroides = velXAsteroides;
-		//this.velYAsteroides = velYAsteroides;
-		//this.cantAsteroides = cantAsteroides;
 		/*
      // Carga la textura de fondo
         backgroundTexture = new Texture(Gdx.files.internal("FondoMenu.jpg"));
@@ -70,15 +68,23 @@ public class PantallaJuego implements Screen {
 */
 		batch = game.getBatch();
 		camera = new OrthographicCamera();	
-		camera.setToOrtho(false, 800, 640);
+		//camera.setToOrtho(false, 800, 640);
+		camera.setToOrtho(false, 1200, 800);
 		//inicializar assets; musica de fondo y efectos de sonido
 		explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
 		explosionSound.setVolume(1,0.5f);
-		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("MusicaPelea.mp3")); //
 		
-		gameMusic.setLooping(true);
-		gameMusic.setVolume(0.5f);
-		gameMusic.play();
+
+		boolean musicaActivada = Configuracion.isMusicaActivada();
+
+	    if (musicaActivada) {
+	    	gameMusic = Gdx.audio.newMusic(Gdx.files.internal("MusicaPelea.mp3")); //
+			gameMusic.setLooping(true);
+			gameMusic.setVolume(0.5f);
+			gameMusic.play();
+	    }
+
+		//Colisiones.setCantEnemigos(cantAsteroides);
 		
 		for (int i = 0; i < cantAsteroides; i++) {
 	        Enemigo bb = new asteroide_SMALL();	   
@@ -111,6 +117,7 @@ public class PantallaJuego implements Screen {
 		game.getFont().draw(batch, "Score:"+this.getScore(), Gdx.graphics.getWidth()-500, 30);
 		game.getFont().draw(batch, "HighScore:"+game.getHighScore(), Gdx.graphics.getWidth()/2-100, 30);
 	}
+
 	@Override
 	public void render(float delta) {
 		  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -148,41 +155,27 @@ public class PantallaJuego implements Screen {
 	    		nave.disparar(batch, Colisiones);
 	      	}
 	      
-		  Colisiones.actualizarBalas(batch);
-	      nave.movimiento(batch, this);
+		Colisiones.actualizarBalas(batch);
+	    nave.movimiento(batch, this);
 
 
-		  Colisiones.mostrarEnemigo(batch);
+		Colisiones.mostrarEnemigo(batch);
 
-	      //dibujar asteroides y manejar colision con nave
-	      Colisiones.colisionesNaveAsteroide(nave);
+	    //dibujar asteroides y manejar colision con nave
+	    Colisiones.colisionesNaveAsteroide(nave);
 
-		  if (nave.getVidas() <= 0) gameOver();
+		if (nave.getVidas() <= 0) gameOver();
 
-		  if (Colisiones.getcantEnemigos() <= 0){
+		if (Colisiones.getcantEnemigos() <= 0) winScreen();
 
-		  } //winScreen();
-	      
-		  /*
-	      if (nave.getDestruido()) {
-
-  		  }*/
-	      batch.end();
-	      //nivel completado
-	      /*if (balls1.size()==0) {
-			Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, 
-					velXAsteroides+3, velYAsteroides+3, cantAsteroides+10);
+	    batch.end();
+		  
+	    if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			Screen ss = new PantallaPausa(game, this);
 			ss.resize(1200, 800);
 			game.setScreen(ss);
 			dispose();
-		  }*/
-		  
-	      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-				//Screen ss = new PantallaPausa(game);
-				//ss.resize(1200, 800);
-				//game.setScreen(ss);
-				dispose();
-			}
+		}
 	      
 	    	 
 	}
@@ -202,9 +195,9 @@ public class PantallaJuego implements Screen {
 	
 	@Override
 	public void show() {
-		
-		// TODO Auto-generated method stub
-		gameMusic.play();
+		if (Configuracion.isMusicaActivada()) {
+	        gameMusic.play();
+	    }
 	}
 
 	@Override

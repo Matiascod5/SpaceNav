@@ -104,6 +104,7 @@ public class Colisiones{
 		        balls1.remove(j);
 		        balls2.remove(j);
 		        j--;
+				this.cantEnemigos--;
 		        //int k = game.getScore() + 10;
 				game.sumarScore(10);
 		    }   	  
@@ -112,7 +113,7 @@ public class Colisiones{
 		    if (b.verificarDestruccion()) {
 		        balas.remove(b);
 		        i--; //para no saltarse 1 tras eliminar del arraylist
-				this.cantEnemigos--;
+				//this.cantEnemigos--;
 				if (cantEnemigos <= 0) return true;
 		    }
 		}
@@ -168,7 +169,7 @@ public class Colisiones{
 
 			}
     	}
-    return false;
+    	return false;
 	}
 
 	public void verificarColisionEnemigo(Disparo b, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2, int score, Sound explosionSound, SpriteBatch batch){
@@ -179,6 +180,7 @@ public class Colisiones{
 		        balls1.remove(j);
 		        balls2.remove(j);
 		        j--;
+				this.cantEnemigos--;
 		        score +=10;
 		    }   	  
 		}
@@ -217,6 +219,10 @@ public class Colisiones{
 
 	public int getcantEnemigos(){
 		return this.cantEnemigos;
+	}
+
+	public void setCantEnemigos(int cantEnemigos){
+		this.cantEnemigos = cantEnemigos;
 	}
 	
 	/*

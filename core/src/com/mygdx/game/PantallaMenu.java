@@ -96,8 +96,10 @@ public class PantallaMenu implements Screen {
 				game.setScreen(ss);
 				dispose();
 		    } else if (opcionSeleccionada == 3) {
-		        // Realizar acciones relacionadas con la opción 3
-		        // ...
+		        Screen ss = new PantallaOpciones(game);
+				ss.resize(1200, 800);
+				game.setScreen(ss);
+				dispose();
 		    }
 		}
 	}

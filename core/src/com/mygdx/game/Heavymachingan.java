@@ -111,8 +111,8 @@ public class Heavymachingan implements Item{
     public Nave efectoEspecial(Nave nave) {
         nave.setxVel(30);
         nave.setyVel(30);
-        nave.setDisparo(HeavyD);
-        nave.getDisparo().efectoEspecial;
+        //nave.setDisparo(HeavyD);
+        //nave.getDisparo().efectoEspecial;
         return nave;
     }
 }
