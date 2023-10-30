@@ -109,6 +109,7 @@ public abstract class Enemigo {
 
 	public abstract void movimiento();
 	
+	/*
 	public void colisionesEnemigos(ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
 		for (int i=0;i<balls1.size();i++) {
 		    Enemigo ball1 = balls1.get(i);   
@@ -121,7 +122,7 @@ public abstract class Enemigo {
 		    }
 		} 
 
-	}
+	}*/
 
 	/*public void verificarColisionNave(Nave nave, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
     	for (int i = 0; i < balls1.size(); i++) {
@@ -134,6 +135,7 @@ public abstract class Enemigo {
     	}
     }*/
 	
+	/*
 	public void checkCollision(Enemigo b2) {
         if(sprite.getBoundingRectangle().overlaps(b2.sprite.getBoundingRectangle())){
         	// rebote
@@ -147,7 +149,8 @@ public abstract class Enemigo {
             setyVel(- getyVel());
             b2.setyVel(- b2.getyVel()); 
         }
-    }
+    }*/
+	
 	public Rectangle getArea() {
     	return sprite.getBoundingRectangle();
     }

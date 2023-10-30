@@ -7,8 +7,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Nave_StarWars extends Nave {
 
+
     public Nave_StarWars(){
-        super(15, 0, 0, new Texture(Gdx.files.internal("StarWarsDerecha4.png") ),Gdx.audio.newSound(Gdx.files.internal("hurt.ogg")),50  );
+        super(5, 0, 0, new Texture(Gdx.files.internal("StarWarsDerecha4.png") ),Gdx.audio.newSound(Gdx.files.internal("r2d2_scream_converted.mp3")),50, new DisparoStarWars(0,0));
     }
 
     @Override
@@ -35,7 +36,6 @@ public class Nave_StarWars extends Nave {
 		bala.mostrar(batch);
          
 	    bala.getSonidoDisparo().play();
-	   
-    }
+	}
     
 }

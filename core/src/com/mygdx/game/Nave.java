@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import java.util.ArrayList;
+import com.mygdx.game.Disparo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -23,15 +24,17 @@ public abstract class Nave {
 	private boolean destruido;
 	//public  ArrayList<Disparo> balas = new ArrayList<>();
 
-	public Nave(int vidas, int xVel, int yVel, Texture tx, Sound sonidoHerido, int tiempoHeridoMax){
+	public Nave(int vidas, int xVel, int yVel, Texture tx, Sound sonidoHerido, int tiempoHeridoMax, Disparo disparo){
 		this.vidas = vidas;
 		this.xVel = xVel;
 		this.yVel = yVel;
 		this.herido = false;
 		this.tiempoHeridoMax = tiempoHeridoMax; 
 		this.spr = new Sprite(tx);
+		//spr.setSize(2.0f,2.0f);
 		this.sonidoHerido = sonidoHerido;
 		this.destruido = false;
+		this.disparo = disparo;
 		setSpritePosition(Gdx.graphics.getWidth()/2-50,30);
 		setSpriteBounds(Gdx.graphics.getWidth()/2-50,30,45,45);
 	}
@@ -82,6 +85,26 @@ public abstract class Nave {
 	   
     }*/
 
+	/*public void disparar(SpriteBatch batch, Colisiones Colisiones) {
+		//x = sprite.getX() + sprite.getWidth()/2-5;
+		//y = sprite.getY()+ sprite.getHeight()-5;
+		//float x, float y, int xSpeed, int ySpeed, Texture tx, Sound sonidoDisparo;
+		//disparo.setX(getSprite().getX() + getSprite().getWidth()/2-5);
+		//disparo.setY(getSprite().getY()+ getSprite().getHeight()-5);
+
+		Disparo b = disparo.formatearDisparo(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5);
+
+
+		//disparo.getSprite().setPosition(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5);
+		//disparo.setDestroyed(false);
+		
+        //Disparo bala = new Disparo(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5, disparo.getxVel(), disparo.getyVel(), disparo.getSprite(), disparo.getSonidoDisparo());
+	    Colisiones.agregarBala(b);
+		b.mostrar(batch);
+         
+	    disparo.getSonidoDisparo().play();
+	}*/
+
 	public abstract void disparar(SpriteBatch batch, Colisiones colisiones);
     
 	
@@ -120,7 +143,7 @@ public abstract class Nave {
         return false;
     }*/
 
-	    public boolean verificarColisionNaveItem(Item b) {
+	/*public boolean verificarColisionNaveItem(Item b) {
     	if(!herido && b.getArea().overlaps(spr.getBoundingRectangle())){
         	// rebote
 			//this = b.efectoEspecial(this);
@@ -139,7 +162,7 @@ public abstract class Nave {
             return true;
         }
         return false;
-    }
+    }*/
     
     public abstract void efectoEspecial();
     

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Heavymachingan implements Item{
+public class Escudo implements Item{
     
     private int x;
     private int y;
@@ -17,12 +17,12 @@ public class Heavymachingan implements Item{
     private Sprite spr;
     private Sound sonidoItem;
     
-    public Heavymachingan(){
+    public Escudo(){
         Random r = new Random();
         this.x = r.nextInt((int)Gdx.graphics.getWidth());
         this.y = 750;
-        this.spr= new Sprite(new Texture(Gdx.files.internal("PowerUp2.png")));
-        this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("heavy-machine-gun.mp3"));
+        this.spr= new Sprite(new Texture(Gdx.files.internal("EscudoPowerUp.png")));
+        this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("EscudoSonido.wav"));
 
         int size = 20+r.nextInt(10);
 
@@ -46,7 +46,7 @@ public class Heavymachingan implements Item{
 	 
 	public boolean mover(){
         //x += getxVel();
-        y -= getyVel();
+        y -= 6;
 
         spr.setPosition(x, y);
 
@@ -109,10 +109,8 @@ public class Heavymachingan implements Item{
 
     @Override
     public Nave efectoEspecial(Nave nave) {
-        nave.setxVel(30);
-        nave.setyVel(30);
-        nave.setDisparo(HeavyD);
-        nave.getDisparo().efectoEspecial;
+        int i = nave.getVidas()+1;
+        nave.setVidas(i);
         return nave;
     }
 }

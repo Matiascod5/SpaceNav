@@ -1,7 +1,10 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * <p>
@@ -17,8 +20,10 @@ public interface Item {
     public int ySpeed = 2;
 
 	public void show ();
+
+	public void draw(SpriteBatch batch);
 	
-	public void mover();
+	public boolean mover();
 	
 	public void sonido();
 
@@ -26,6 +31,14 @@ public interface Item {
 	
 	public Nave efectoEspecial(Nave nave);
 
+	public Sound getSonidoItem();
+   
+    public void setSonidoItem(Sound sonidoItem);
+
+	public int getY();
+
+	public int getX();
+   
 	public int getId();
 
 	public int getxVel();

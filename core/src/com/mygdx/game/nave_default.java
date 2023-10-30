@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class nave_default extends Nave{
 	
 	public nave_default() {
-		super(3,0,0,new Texture(Gdx.files.internal("MainShip3.png")), Gdx.audio.newSound(Gdx.files.internal("hurt.ogg")),50);
+		super(5,0,0,new Texture(Gdx.files.internal("MainShip3.png")), Gdx.audio.newSound(Gdx.files.internal("hurt.ogg")),50, new disparo_default(0,0));
 		/*
 		setVidas(3);
 		setxVel(0);

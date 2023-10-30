@@ -29,9 +29,11 @@ public class PantallaJuego implements Screen {
 	//private int velYAsteroides; 
 	private int cantAsteroides;
 	//private Texture fondo;
-	//private int numRandom = 0;
-	//private Heavymachingan heavy = new Heavymachingan();
-	private Nave nave = new nave_default(); // editar nave aqui
+	private Random numRandom;
+	private Item item;
+	private boolean itemSpawn = false;
+	private Heavymachingan heavy = new Heavymachingan();
+	private Nave nave = new Nave_StarWars(); // editar nave aqui
 	//private asteroid asteroides = new asteroid();
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
@@ -41,8 +43,17 @@ public class PantallaJuego implements Screen {
 
 	private Colisiones Colisiones = new Colisiones();
 
+	public void spawnItem(){
+		numRandom = new Random();
+		int numAleatorio = numRandom.nextInt(2) + 1;
+		if (numAleatorio == 1) this.item = new Heavymachingan();
+		if (numAleatorio == 2) this.item = new Escudo();
 
-	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score, int velXAsteroides, int velYAsteroides, int cantAsteroides){
+		this.itemSpawn = true;
+	}
+
+
+	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score, int cantAsteroides){
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
@@ -63,7 +74,7 @@ public class PantallaJuego implements Screen {
 		//inicializar assets; musica de fondo y efectos de sonido
 		explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
 		explosionSound.setVolume(1,0.5f);
-		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("piano-loops.wav")); //
+		gameMusic = Gdx.audio.newMusic(Gdx.files.internal("MusicaPelea.mp3")); //
 		
 		gameMusic.setLooping(true);
 		gameMusic.setVolume(0.5f);
@@ -85,20 +96,19 @@ public class PantallaJuego implements Screen {
 		}
 	}
 
-	/*public void winScreen(){
-		//Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, 
-					velXAsteroides+3, velYAsteroides+3, cantAsteroides+10);
-			ss.resize(1200, 800);
-			game.setScreen(ss);
-			dispose();
-	}*/
+	public void winScreen(){
+		Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, cantAsteroides+10);
+		ss.resize(1200, 800);
+		game.setScreen(ss);
+		dispose();
+	}
 
     
 	public void dibujaEncabezado() {
 		CharSequence str = "Vidas: "+nave.getVidas()+" Ronda: "+ronda;
 		game.getFont().getData().setScale(2f);		
 		game.getFont().draw(batch, str, 10, 30);
-		game.getFont().draw(batch, "Score:"+this.score, Gdx.graphics.getWidth()-150, 30);
+		game.getFont().draw(batch, "Score:"+this.getScore(), Gdx.graphics.getWidth()-500, 30);
 		game.getFont().draw(batch, "HighScore:"+game.getHighScore(), Gdx.graphics.getWidth()/2-100, 30);
 	}
 	@Override
@@ -112,13 +122,27 @@ public class PantallaJuego implements Screen {
 		  dibujaEncabezado();
 	      if (!nave.getHerido()) {
 		    // colisiones entre balas y asteroides y su destruccion 
-			Colisiones.verificarColisionEnemigoBala(score, explosionSound, batch); //winScreen();
+			Colisiones.verificarColisionEnemigoBala(this, score, explosionSound, batch); //winScreen();
 			
 		    //actualizar movimiento de asteroides dentro del area
 			Colisiones.actualizarEnemigos(batch);
 
 		    //colisiones entre asteroides y sus rebotes 
 			Colisiones.colisionesEnemigos();
+
+			if (itemSpawn == false){
+				numRandom = new Random();
+		  		int numeroAleatorio = numRandom.nextInt(100) + 1;
+				if (numeroAleatorio == 4) spawnItem();
+		  	}
+		  	else{
+				item.draw(batch);
+				if (!item.mover()) itemSpawn = false;
+				if (Colisiones.verificarColisionNaveItem(item, nave)){
+					item.dispose();
+					itemSpawn = false;
+				} 
+		  	}
 		}
 			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 	    		nave.disparar(batch, Colisiones);
@@ -127,10 +151,17 @@ public class PantallaJuego implements Screen {
 		  Colisiones.actualizarBalas(batch);
 	      nave.movimiento(batch, this);
 
+
 		  Colisiones.mostrarEnemigo(batch);
 
 	      //dibujar asteroides y manejar colision con nave
-	      Colisiones.colisionesNaveAsteroide(nave); //gameOver();
+	      Colisiones.colisionesNaveAsteroide(nave);
+
+		  if (nave.getVidas() <= 0) gameOver();
+
+		  if (Colisiones.getcantEnemigos() <= 0){
+
+		  } //winScreen();
 	      
 		  /*
 	      if (nave.getDestruido()) {
@@ -147,13 +178,21 @@ public class PantallaJuego implements Screen {
 		  }*/
 		  
 	      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-				//Screen ss = new PantallaMercado(game);
+				//Screen ss = new PantallaPausa(game);
 				//ss.resize(1200, 800);
 				//game.setScreen(ss);
 				dispose();
 			}
 	      
 	    	 
+	}
+
+	public void sumarScore(int score){
+		this.score += score;
+	}
+
+	public int getScore(){
+		return this.score;
 	}
     
 	/*

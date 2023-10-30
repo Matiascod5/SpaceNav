@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class DisparoStarWars extends Disparo {
+public class HeavyD extends Disparo {
 
     
-	public DisparoStarWars(float x, float y) {
-		super(x,y,0,3,new Sprite(new Texture(Gdx.files.internal("x-wing-bolt-red2.png"))), Gdx.audio.newSound(Gdx.files.internal("DisparoStarWars.mp3")));
+	public HeavyD(float x, float y) {
+		super(x,y,0,3,new Sprite(new Texture(Gdx.files.internal("BalazoH.png"))), Gdx.audio.newSound(Gdx.files.internal("DisparoStarWars.mp3")));
 		/*setxVel(0);
 		setyVel(0);
 		setSprite(new Texture(Gdx.files.internal("Rocket2.png")));
@@ -19,8 +19,8 @@ public class DisparoStarWars extends Disparo {
 
     @Override
     public void efectoEspecial() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'efectoEspecial'");
+        this.setxVel(50);
+        this.setyVel(50);
     }
 
     @Override

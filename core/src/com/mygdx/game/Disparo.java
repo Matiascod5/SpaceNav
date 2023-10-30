@@ -16,8 +16,8 @@ public abstract class Disparo {
 	private Sprite sprite;
 	private Sound sonidoDisparo;
 	    
-	public Disparo(float x, float y, int xSpeed, int ySpeed, Texture tx, Sound sonidoDisparo, Texture texturaDisparo) {
-	    this.sprite = new Sprite(tx);
+	public Disparo(float x, float y, int xSpeed, int ySpeed, Sprite tx, Sound sonidoDisparo) {
+	    this.sprite = tx;
 	    sprite.setPosition(x, y);
 		//this.x = x;
 		//this.y = y;
@@ -26,11 +26,23 @@ public abstract class Disparo {
 		this.sonidoDisparo = sonidoDisparo;
 		this.destroyed = false;
 	}
+
+
+
+	public Disparo formatearDisparo(float x, float y){
+		this.x = x;
+		this.y = y;
+		this.destroyed = false;
+		this.sprite.setPosition(x,y);
+		return this;
+	}
 	        
 	public void mostrar(SpriteBatch batch) {
 	    sprite.draw(batch);
 	}
 
+		
+/*
 	public void verificarColisionEnemigo(Disparo b, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2, int score, Sound explosionSound, SpriteBatch batch){
 		    //b.movimiento();
 		for (int j = 0; j < balls1.size(); j++) {    
@@ -53,7 +65,7 @@ public abstract class Disparo {
 	    }
 	    return false;
     }
-	    
+	    */
 	public boolean verificarDestruccion() {
 		return destroyed;
 	}

@@ -44,12 +44,12 @@ public class Colisiones{
 	}
     
     public void colisionesEnemigos() {
-		for (int i=0;i<balls1.size();i++) {
+		for (int i = 0 ; i<balls1.size() ; i++) {
 		    Enemigo ball1 = balls1.get(i);   
 		    for (int j=0;j<balls2.size();j++) {
 		        Enemigo ball2 = balls2.get(j); 
 		        if (i<j) {
-		        	ball1.checkCollision(ball2);
+		        	checkCollision(ball1, ball2);
 		        }
 		    }
 		} 
@@ -93,11 +93,22 @@ public class Colisiones{
 		 }
 	}
 
-	public boolean verificarColisionEnemigoBala(int score, Sound explosionSound, SpriteBatch batch){
+	public boolean verificarColisionEnemigoBala(PantallaJuego game, int score, Sound explosionSound, SpriteBatch batch){
 		for (int i = 0; i < balas.size(); i++){
 			Disparo b = balas.get(i);
 			b.movimiento();
-			b.verificarColisionEnemigo(b, balls1, balls2, score, explosionSound, batch);
+			//verificarColisionEnemigo(b, balls1, balls2, score, explosionSound, batch);
+			for (int j = 0; j < balls1.size(); j++) {    
+		    if (verificarColision(balls1.get(j), b)) {          
+		        explosionSound.play();
+		        balls1.remove(j);
+		        balls2.remove(j);
+		        j--;
+		        //int k = game.getScore() + 10;
+				game.sumarScore(10);
+		    }   	  
+		}
+		b.mostrar(batch);
 		    if (b.verificarDestruccion()) {
 		        balas.remove(b);
 		        i--; //para no saltarse 1 tras eliminar del arraylist
@@ -144,7 +155,8 @@ public class Colisiones{
             		nave.getSprite().setX(nave.getSprite().getX()+Math.signum(xVel));
             	} 
         		//actualizar vidas y herir
-            	nave.setVidas(vidas--);;
+				vidas--;
+            	nave.setVidas(vidas);;
             	nave.setHerido(true);
   		    	nave.setTiempoHerido(nave.getTiempoHeridoMax());
   		    	nave.getSonidoHerido().play();
@@ -157,6 +169,54 @@ public class Colisiones{
 			}
     	}
     return false;
+	}
+
+	public void verificarColisionEnemigo(Disparo b, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2, int score, Sound explosionSound, SpriteBatch batch){
+		    //b.movimiento();
+		for (int j = 0; j < balls1.size(); j++) {    
+		    if (verificarColision(balls1.get(j), b)) {          
+		        explosionSound.play();
+		        balls1.remove(j);
+		        balls2.remove(j);
+		        j--;
+		        score +=10;
+		    }   	  
+		}
+		b.mostrar(batch);
+	}
+	    
+	public boolean verificarColision(Enemigo b2, Disparo b1) {
+	    if(b1.getSprite().getBoundingRectangle().overlaps(b2.getArea())){
+	     	// Se destruyen ambos
+	        b1.setDestroyed(true);
+	        return true;
+	    }
+	    return false;
+    }
+
+	public boolean verificarColisionNaveItem(Item b, Nave a) {
+    	if(!a.getHerido() && b.getArea().overlaps(a.getSprite().getBoundingRectangle())){
+        	// rebote
+			//this = b.efectoEspecial(this);
+			b.dispose();
+            // despegar sprites
+           int cont = 0;
+            while (b.getArea().overlaps(a.getSprite().getBoundingRectangle()) && cont<a.getxVel()) {
+               a.getSprite().setX(a.getSprite().getX()+Math.signum(a.getxVel()));
+            } 
+        	//actualizar vidas y herir
+  		    //tiempoHerido=tiempoHeridoMax;
+			
+			a.setTiempoHerido(a.getTiempoHeridoMax());
+  		    b.getSonidoItem().play();
+			b.efectoEspecial(a);
+			return true;
+        }
+        return false;
+    }
+
+	public int getcantEnemigos(){
+		return this.cantEnemigos;
 	}
 	
 	/*
