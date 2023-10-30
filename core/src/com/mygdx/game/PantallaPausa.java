@@ -46,6 +46,7 @@ public class PantallaPausa implements Screen {
             // El jugador presionó "Enter" para reanudar el juego.
             // Cambia de nuevo a PantallaJuego y pasa la instancia de PantallaJuego.
             game.setScreen(pantallaJuego);
+			this.dispose();
         }
 	}
  

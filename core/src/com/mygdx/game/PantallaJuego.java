@@ -75,14 +75,14 @@ public class PantallaJuego implements Screen {
 		explosionSound.setVolume(1,0.5f);
 		
 
-		boolean musicaActivada = Configuracion.isMusicaActivada();
+		musicaActivada = Configuracion.isMusicaActivada();
 
-	    if (musicaActivada) {
-	    	gameMusic = Gdx.audio.newMusic(Gdx.files.internal("MusicaPelea.mp3")); //
-			gameMusic.setLooping(true);
-			gameMusic.setVolume(0.5f);
-			gameMusic.play();
-	    }
+        if (musicaActivada) {
+            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("piano-loops.wav"));
+            gameMusic.setLooping(true);
+            gameMusic.setVolume(Configuracion.getVolumenMusica());
+            gameMusic.play();
+        }
 
 		//Colisiones.setCantEnemigos(cantAsteroides);
 		
@@ -195,9 +195,13 @@ public class PantallaJuego implements Screen {
 	
 	@Override
 	public void show() {
-		if (Configuracion.isMusicaActivada()) {
-	        gameMusic.play();
+		if (Preferences.getMusicaActivada()) {
+	        Configuracion.setMusicaActivada(true); // Establece la configuración de música en verdadero si las preferencias la tienen habilitada.
+	        gameMusic.play(); // Inicia la música solo si está habilitada en las preferencias.
+	    } else {
+	        Configuracion.setMusicaActivada(false); // Establece la configuración de música en falso si las preferencias la tienen deshabilitada.
 	    }
+	    Configuracion.setVolumenMusica(Preferences.getVolumenMusica());
 	}
 
 	@Override

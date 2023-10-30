@@ -15,7 +15,7 @@ public abstract class Enemigo {
 	private int xVel;
 	private int yVel;
 	private Sprite sprite;
-	private int cantEnemigos;
+	//private int cantEnemigos;
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
 	
@@ -150,7 +150,7 @@ public abstract class Enemigo {
             b2.setyVel(- b2.getyVel()); 
         }
     }*/
-	
+
 	public Rectangle getArea() {
     	return sprite.getBoundingRectangle();
     }

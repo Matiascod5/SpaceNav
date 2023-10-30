@@ -46,7 +46,7 @@ public class Heavymachingan implements Item{
 	 
 	public boolean mover(){
         //x += getxVel();
-        y -= getyVel();
+        y -= 2;
 
         spr.setPosition(x, y);
 

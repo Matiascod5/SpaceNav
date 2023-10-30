@@ -21,7 +21,7 @@ public class PantallaOpciones implements Screen {
     private float cursorY;
     private Music gameMusic;
 	private int opcionSeleccionada = 1;
-	private float[] optionY = {175, 120, 75}; 
+	private float[] optionY = {175, 120, 75, 30}; 
 	private int numOptions = optionY.length; 
 	private Texture backgroundTexture;
 	private Sprite backgroundSprite;
@@ -37,14 +37,14 @@ public class PantallaOpciones implements Screen {
 		camera.setToOrtho(false, 1200, 800);
         cursorTexture = new Texture(Gdx.files.internal("Flecha.png"));
         
-        boolean musicaActivada = Configuracion.isMusicaActivada();
+        musicaActivada = Configuracion.isMusicaActivada();
 
-	    if (musicaActivada) {
-	    	gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Opciones.mp3")); //
-	        gameMusic.setLooping(true);
-			gameMusic.setVolume(0.5f);
-			gameMusic.play();
-	    }
+        if (musicaActivada) {
+            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("Opciones.mp3"));
+            gameMusic.setLooping(true);
+            gameMusic.setVolume(Configuracion.getVolumenMusica());
+            gameMusic.play();
+        }
 
         // Crear el Sprite de la flecha
         cursorSprite = new Sprite(cursorTexture);
@@ -73,9 +73,10 @@ public class PantallaOpciones implements Screen {
 		backgroundSprite.draw(game.getBatch());
 		game.getFont().draw(game.getBatch(), "Opciones", 140, 600);
 		game.getFont().draw(game.getBatch(), "Seleccione una opcion:", 100, 300);
-		game.getFont().draw(game.getBatch(), "Sonido", 200, 200);
-		game.getFont().draw(game.getBatch(), "Musica", 200, 150);
-		game.getFont().draw(game.getBatch(), "Resolucion:", 200, 100);
+		game.getFont().draw(game.getBatch(), "Subir volumen", 200, 200);
+		game.getFont().draw(game.getBatch(), "Bajar volumen", 200, 150);
+		game.getFont().draw(game.getBatch(), "Apagar/prender Musica:", 200, 100);
+		game.getFont().draw(game.getBatch(), "Resolucion(no sirve)", 200, 50);
         cursorSprite.draw(game.getBatch());
 
         
@@ -102,15 +103,38 @@ public class PantallaOpciones implements Screen {
 		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
 		    if (opcionSeleccionada == 1) {
-		        
+		        // Aumentar el volumen de la música
+		        if (gameMusic != null) {
+		            Configuracion.setVolumenMusica(Configuracion.getVolumenMusica() + 0.1f);
+		            if (Configuracion.getVolumenMusica() > 1.0f) {
+		                Configuracion.setVolumenMusica(1.0f);
+		            }
+		            gameMusic.setVolume(Configuracion.getVolumenMusica());
+		            // Guardar el valor en las preferencias
+		            Preferences.setVolumenMusica(Configuracion.getVolumenMusica());
+		        }
 		    } else if (opcionSeleccionada == 2) {
-		        // Cambiar la configuración de música aquí
-		        Configuracion.setMusicaActivada(!Configuracion.isMusicaActivada());
+		        // Disminuir el volumen de la música
+		        if (gameMusic != null) {
+		            Configuracion.setVolumenMusica(Configuracion.getVolumenMusica() - 0.1f);
+		            if (Configuracion.getVolumenMusica() < 0.0f) {
+		                Configuracion.setVolumenMusica(0.0f);
+		            }
+		            gameMusic.setVolume(Configuracion.getVolumenMusica());
+		            // Guardar el valor en las preferencias
+		            Preferences.setVolumenMusica(Configuracion.getVolumenMusica());
+		        }
 		    } else if (opcionSeleccionada == 3) {
-		        // Realizar acciones relacionadas con la opción 3
+		        // Cambiar la configuración de música
+		        Configuracion.setMusicaActivada(!Configuracion.isMusicaActivada());
+		        // Guardar el valor en las preferencias
+		        Preferences.setMusicaActivada(Configuracion.isMusicaActivada());
+		    } else if (opcionSeleccionada == 4) {
+		        // Realizar acciones relacionadas con la opción 4
 		        // ...
 		    }
 		}
+
 
 		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			Screen ss = new PantallaMenu(game);
@@ -123,8 +147,13 @@ public class PantallaOpciones implements Screen {
 	
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		if (Preferences.getMusicaActivada()) {
+	        Configuracion.setMusicaActivada(true); // Establece la configuración de música en verdadero si las preferencias la tienen habilitada.
+	        gameMusic.play(); // Inicia la música solo si está habilitada en las preferencias.
+	    } else {
+	        Configuracion.setMusicaActivada(false); // Establece la configuración de música en falso si las preferencias la tienen deshabilitada.
+	    }
+	    Configuracion.setVolumenMusica(Preferences.getVolumenMusica());
 	}
 
 	@Override
