@@ -48,10 +48,24 @@ public class Nave {
         float y =  spr.getY();
         if (!herido) {
 	        // que se mueva con teclado
-	        if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) xVel--;
-	        if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) xVel++;
-        	if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) yVel--;     
-	        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) yVel++;
+	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+				xVel = -3; //yVel = 0;
+			} 
+	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+				xVel = 3; //yVel = 0;
+			} 
+        	if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+				yVel = -3; //xVel = 0;
+			} 
+	        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
+				yVel = 3; //xVel = 0;
+			}
+			if (!Gdx.input.isKeyPressed(Input.Keys.LEFT) && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+				xVel = 0;
+			}
+			if (!Gdx.input.isKeyPressed(Input.Keys.UP) && !Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+				yVel = 0;
+			}
         	
 	        
 	        // que se mantenga dentro de los bordes de la ventana
