@@ -1,12 +1,12 @@
 package com.mygdx.game;
 
-import java.util.Random;
+//import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
+//import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
+//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+//import com.badlogic.gdx.math.Rectangle;
 
 public abstract class Asteroides extends Enemigo{
 	int x = getX();

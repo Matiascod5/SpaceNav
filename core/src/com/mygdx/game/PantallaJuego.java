@@ -1,6 +1,6 @@
 package com.mygdx.game;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+//import com.badlogic.gdx.utils.ScreenUtils;
 
 
 public class PantallaJuego implements Screen {
@@ -33,7 +33,16 @@ public class PantallaJuego implements Screen {
 	private Item item;
 	private boolean itemSpawn = false;
 	private Heavymachingan heavy = new Heavymachingan();
-	private Nave nave = new Nave_StarWars(); // editar nave aqui
+
+	private DirectorNave director = new DirectorNave();
+	private NaveBuilder builder = new NaveBuilder();
+	private Nave nave;
+
+	private void aa(){
+		director.construirNaveDefault(builder);
+		nave = builder.getNave(); // editar nave aqui
+	}
+
 	//private asteroid asteroides = new asteroid();
 	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
 	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
@@ -58,6 +67,9 @@ public class PantallaJuego implements Screen {
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
+
+		director.construirNaveDefault(builder);
+		nave = builder.getNave(); // editar nave aqui
 		/*
      // Carga la textura de fondo
         backgroundTexture = new Texture(Gdx.files.internal("FondoMenu.jpg"));

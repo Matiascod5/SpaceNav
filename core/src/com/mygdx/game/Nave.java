@@ -1,7 +1,7 @@
 package com.mygdx.game;
 
 import java.util.ArrayList;
-import com.mygdx.game.Disparo;
+//import com.mygdx.game.Disparo;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -11,7 +11,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 
-public abstract class Nave {
+public class Nave {
+	
+	private TipoNave tipo;
 	private int vidas;
 	private float xVel;
 	private float yVel;
@@ -22,19 +24,21 @@ public abstract class Nave {
 	private Sound sonidoHerido;
 	private int tiempoHerido;
 	private boolean destruido;
+	//private int tipoDisparo;
 	//public  ArrayList<Disparo> balas = new ArrayList<>();
 
-	public Nave(int vidas, int xVel, int yVel, Texture tx, Sound sonidoHerido, int tiempoHeridoMax, Disparo disparo){
+	public Nave(int vidas, float xVel, float yVel, Sprite tx, Sound sonidoHerido, int tiempoHeridoMax, Disparo disparo, TipoNave tipo){
 		this.vidas = vidas;
 		this.xVel = xVel;
 		this.yVel = yVel;
 		this.herido = false;
 		this.tiempoHeridoMax = tiempoHeridoMax; 
-		this.spr = new Sprite(tx);
+		this.spr = tx;
 		//spr.setSize(2.0f,2.0f);
 		this.sonidoHerido = sonidoHerido;
 		this.destruido = false;
 		this.disparo = disparo;
+		this.tipo = tipo;
 		setSpritePosition(Gdx.graphics.getWidth()/2-50,30);
 		setSpriteBounds(Gdx.graphics.getWidth()/2-50,30,45,45);
 	}
@@ -116,7 +120,17 @@ public abstract class Nave {
 	    disparo.getSonidoDisparo().play();
 	}*/
 
-	public abstract void disparar(SpriteBatch batch, Colisiones colisiones);
+	//IMPORTANTEEEE public abstract void disparar(SpriteBatch batch, Colisiones colisiones);
+
+	public void disparar(SpriteBatch batch, Colisiones Colisiones) {
+		//x = sprite.getX() + sprite.getWidth()/2-5;
+		//y = sprite.getY()+ sprite.getHeight()-5;
+        Disparo bala = new disparo_default(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5);
+	    Colisiones.agregarBala(bala);
+		bala.mostrar(batch);
+	    bala.getSonidoDisparo().play();
+	   
+    }
     
 	
     public void mostrarDisparo(SpriteBatch batch, ArrayList<Disparo> balas) {
@@ -175,7 +189,7 @@ public abstract class Nave {
         return false;
     }*/
     
-    public abstract void efectoEspecial();
+    //IMPORTANTEE public abstract void efectoEspecial();
     
 	/*
     public boolean agregarBala(Disparo bb) {
@@ -228,6 +242,10 @@ public abstract class Nave {
 
 	public void setDisparo(Disparo disparo){
 		this.disparo = disparo;
+	}
+
+	public void setTipoNave(TipoNave tipo){
+		this.tipo = tipo;
 	}
 	
 	public int getVidas() {
@@ -284,6 +302,10 @@ public abstract class Nave {
 
 	public Disparo getDisparo(){
 		return this.disparo;
+	}
+
+	public TipoNave getTipoNave(){
+		return this.tipo;
 	}
 	
 }
