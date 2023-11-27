@@ -16,23 +16,14 @@ public class Heavymachingan implements Item{
     private int id;
     private Sprite spr;
     private Sound sonidoItem;
+
+    private static final Heavymachingan instance = new Heavymachingan();
     
-    public Heavymachingan(){
-        Random r = new Random();
-        this.x = r.nextInt((int)Gdx.graphics.getWidth());
-        this.y = 750;
+    private Heavymachingan(){
+        
+        setSpawn();
         this.spr= new Sprite(new Texture(Gdx.files.internal("PowerUp2.png")));
         this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("heavy-machine-gun.mp3"));
-
-        int size = 20+r.nextInt(10);
-
-        //validar que borde de esfera no quede fuera
-    	if (x-size < 0) this.x = x+size;
-    	if (x+size > Gdx.graphics.getWidth())this.x = x-size;
-         
-        //validar que borde de esfera no quede fuera
-    	if (y-size < 0) this.y = y+size;
-    	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
         spr.setPosition(x,y);
     }
 
@@ -52,6 +43,7 @@ public class Heavymachingan implements Item{
 
         if (y <= 20){
             dispose();
+            //setSpawn();
             return false;
         } 
         return true;
@@ -61,7 +53,24 @@ public class Heavymachingan implements Item{
         
     }
     
-	
+	public void setSpawn(){
+        Random r = new Random();
+        this.x = r.nextInt((int)Gdx.graphics.getWidth());
+        this.y = 750;
+
+        int size = 20+r.nextInt(10);
+
+        //validar que borde de esfera no quede fuera
+    	if (x-size < 0) this.x = x+size;
+    	if (x+size > Gdx.graphics.getWidth())this.x = x-size;
+         
+        //validar que borde de esfera no quede fuera
+    	if (y-size < 0) this.y = y+size;
+    	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
+
+        //spr.setPosition(x,y);
+    }
+    
 	public Sound getSonidoItem(){
         return this.sonidoItem;
     }
@@ -106,6 +115,10 @@ public class Heavymachingan implements Item{
 	public int getyVel() {
 		return ySpeed;
 	}
+
+    public static Heavymachingan getInstance(){
+        return instance;
+    }
 
     @Override
     public Nave efectoEspecial(Nave nave) {

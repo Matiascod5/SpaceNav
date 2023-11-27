@@ -32,7 +32,7 @@ public class PantallaJuego implements Screen {
 	private Random numRandom;
 	private Item item;
 	private boolean itemSpawn = false;
-	private Heavymachingan heavy = new Heavymachingan();
+	//private Heavymachingan heavy = Heavymachingan.getInstance();
 
 	private DirectorNave director = new DirectorNave();
 	private NaveBuilder builder = new NaveBuilder();
@@ -56,8 +56,8 @@ public class PantallaJuego implements Screen {
 	public void spawnItem(){
 		numRandom = new Random();
 		int numAleatorio = numRandom.nextInt(2) + 1;
-		if (numAleatorio == 1) this.item = new Heavymachingan();
-		if (numAleatorio == 2) this.item = new Escudo();
+		if (numAleatorio == 1) this.item = Heavymachingan.getInstance();
+		if (numAleatorio == 2) this.item = Escudo.getInstance();
 
 		this.itemSpawn = true;
 	}
@@ -155,12 +155,16 @@ public class PantallaJuego implements Screen {
 				if (numeroAleatorio == 4) spawnItem();
 		  	}
 		  	else{
-				item.draw(batch);
-				if (!item.mover()) itemSpawn = false;
+				if (!item.mover()){
+					itemSpawn = false;
+					item.setSpawn();
+				} 
 				if (Colisiones.verificarColisionNaveItem(item, nave)){
+					item.setSpawn();
 					item.dispose();
 					itemSpawn = false;
 				} 
+				item.draw(batch);
 		  	}
 		}
 			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {

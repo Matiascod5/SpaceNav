@@ -45,6 +45,8 @@ public interface Item {
 
 	public int getyVel();
 
+	public void setSpawn();
+
 	/** Called when this screen is no longer the current screen for a {@link Game}. */
 	public void hide ();
 

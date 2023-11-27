@@ -16,13 +16,20 @@ public class Escudo implements Item{
     private int id;
     private Sprite spr;
     private Sound sonidoItem;
+
+    private static final Escudo instance = new Escudo();
     
-    public Escudo(){
+    private Escudo(){
+        setSpawn();
+        this.spr= new Sprite(new Texture(Gdx.files.internal("EscudoPowerUp.png")));
+        this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("EscudoSonido.wav"));
+        spr.setPosition(x,y);
+    }
+
+    public void setSpawn(){
         Random r = new Random();
         this.x = r.nextInt((int)Gdx.graphics.getWidth());
         this.y = 750;
-        this.spr= new Sprite(new Texture(Gdx.files.internal("EscudoPowerUp.png")));
-        this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("EscudoSonido.wav"));
 
         int size = 20+r.nextInt(10);
 
@@ -33,7 +40,8 @@ public class Escudo implements Item{
         //validar que borde de esfera no quede fuera
     	if (y-size < 0) this.y = y+size;
     	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
-        spr.setPosition(x,y);
+
+        //spr.setPosition(x,y);
     }
 
 	public Rectangle getArea() {
@@ -106,6 +114,10 @@ public class Escudo implements Item{
 	public int getyVel() {
 		return ySpeed;
 	}
+
+    public static Escudo getInstance(){
+        return instance;
+    }
 
     @Override
     public Nave efectoEspecial(Nave nave) {

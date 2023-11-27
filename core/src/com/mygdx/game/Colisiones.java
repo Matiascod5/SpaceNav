@@ -212,6 +212,7 @@ public class Colisiones{
 			a.setTiempoHerido(a.getTiempoHeridoMax());
   		    b.getSonidoItem().play();
 			b.efectoEspecial(a);
+			//b.setSpawn();
 			return true;
         }
         return false;
