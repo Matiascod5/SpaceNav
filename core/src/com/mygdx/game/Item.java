@@ -3,7 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Rectangle;
-//import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
@@ -16,41 +16,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * @see Game */
 public interface Item {
 
-    public int xSpeed = 0;
-    public int ySpeed = 2;
-
-	public void show ();
-
-	public void draw(SpriteBatch batch);
-	
-	public boolean mover();
-	
-	public void sonido();
-
-	public Rectangle getArea(); 
-	
-	public Nave efectoEspecial(Nave nave);
-
-	public Sound getSonidoItem();
-   
-    public void setSonidoItem(Sound sonidoItem);
-
-	public int getY();
-
-	public int getX();
-   
-	public int getId();
-
-	public int getxVel();
-
-	public int getyVel();
-
 	public void setSpawn();
 
-	/** Called when this screen is no longer the current screen for a {@link Game}. */
+	public boolean mover();
+
+	public void draw(SpriteBatch batch);
+    
+    public void setX(int x);
+
+    public void setY(int y);
+
+    public void setSprite(Sprite spr);
+
+    public void setSonidoItem(Sound sonidoItem);
+
+    public Rectangle getArea();
+    
+	public Sound getSonidoItem();
+
+    public int getY();
+
+    public int getX();
+
+    public Nave efectoEspecial(Nave nave);
+
+    /** Called when this screen is no longer the current screen for a {@link Game}. */
 	public void hide ();
 
-	/** Called when this screen should release all resources. */
 	public void dispose ();
 	
 }

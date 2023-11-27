@@ -19,39 +19,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class PantallaJuego implements Screen {
 
 	private SpaceNavigation game;
+	private int score;
+	private int ronda;
+	private boolean itemSpawn = false;
+
 	private OrthographicCamera camera;	
 	private SpriteBatch batch;
 	private Sound explosionSound;
 	private Music gameMusic;
-	private int score;
-	private int ronda;
-	//private int velXAsteroides; 
-	//private int velYAsteroides; 
 	private int cantAsteroides;
-	//private Texture fondo;
 	private Random numRandom;
 	private Item item;
-	private boolean itemSpawn = false;
-	//private Heavymachingan heavy = Heavymachingan.getInstance();
+	private boolean musicaActivada = true;
+	private Colisiones Colisiones = new Colisiones();
 
 	private DirectorNave director = new DirectorNave();
 	private NaveBuilder builder = new NaveBuilder();
 	private Nave nave;
-
-	private void aa(){
-		director.construirNaveDefault(builder);
-		nave = builder.getNave(); // editar nave aqui
-	}
-
-	//private asteroid asteroides = new asteroid();
-	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
-	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
-	//private  ArrayList<Disparo> balas = new ArrayList<>();
-	private Texture backgroundTexture;
-	private Sprite backgroundSprite;
-	private boolean musicaActivada = true;
-
-	private Colisiones Colisiones = new Colisiones();
 
 	public void spawnItem(){
 		numRandom = new Random();
@@ -68,16 +52,9 @@ public class PantallaJuego implements Screen {
 		this.ronda = ronda;
 		this.score = score;
 
-		director.construirNaveDefault(builder);
+		director.construirNaveStarWars(builder);
 		nave = builder.getNave(); // editar nave aqui
-		/*
-     // Carga la textura de fondo
-        backgroundTexture = new Texture(Gdx.files.internal("FondoMenu.jpg"));
 
-        // Configura el Sprite de fondo
-        backgroundSprite = new Sprite(backgroundTexture);
-        backgroundSprite.setSize(1200, 800); 
-*/
 		batch = game.getBatch();
 		camera = new OrthographicCamera();	
 		//camera.setToOrtho(false, 800, 640);
@@ -96,8 +73,7 @@ public class PantallaJuego implements Screen {
             gameMusic.play();
         }
 
-		//Colisiones.setCantEnemigos(cantAsteroides);
-		
+		//Spawn enemigos
 		for (int i = 0; i < cantAsteroides; i++) {
 	        Enemigo bb = new asteroide_SMALL();	   
 	  	    Colisiones.añadirEnemigo(bb);

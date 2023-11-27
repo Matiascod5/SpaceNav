@@ -10,13 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Escudo implements Item{
-    
     private int x;
     private int y;
-    private int id;
     private Sprite spr;
     private Sound sonidoItem;
-
     private static final Escudo instance = new Escudo();
     
     private Escudo(){
@@ -40,89 +37,71 @@ public class Escudo implements Item{
         //validar que borde de esfera no quede fuera
     	if (y-size < 0) this.y = y+size;
     	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
-
-        //spr.setPosition(x,y);
     }
 
-	public Rectangle getArea() {
-    	return spr.getBoundingRectangle();
-    }
-
-    public void show (){
-
-    }
-	 
 	public boolean mover(){
-        //x += getxVel();
-        y -= 6;
+        this.y -= 6;
 
         spr.setPosition(x, y);
 
-        if (y <= 20){
+        if (this.y <= 20){
             dispose();
             return false;
         } 
         return true;
     }
 
-    public void sonido(){
-        
+    public void draw(SpriteBatch batch){
+    	spr.draw(batch);
     }
-    
-	
-	public Sound getSonidoItem(){
-        return this.sonidoItem;
+
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;
+    }
+
+    public void setSprite(Sprite spr){
+        this.spr = spr;
     }
 
     public void setSonidoItem(Sound sonidoItem){
         this.sonidoItem = sonidoItem;
     }
 
-    public int getY(){
-        return this.y;
+    public Rectangle getArea(){
+    	return spr.getBoundingRectangle();
+    }
+	
+	public Sound getSonidoItem(){
+        return this.sonidoItem;
     }
 
     public int getX(){
         return this.x;
+    }  
+
+    public int getY(){
+        return this.y;
     }
-
-    public void draw(SpriteBatch batch) {
-    	spr.draw(batch);
-    }    
-
-	/** Called when this screen is no longer the current screen for a {@link Game}. */
-	public void hide (){
-
-    }
-
-	public void dispose (){
-
-    }
-
-    public void setId(){
-        this.id = 1;
-    }
-
-    public int getId(){
-        return this.id;
-    }
-
-    public int getxVel() {
-		return xSpeed;
-	}
-
-	public int getyVel() {
-		return ySpeed;
-	}
 
     public static Escudo getInstance(){
         return instance;
     }
 
     @Override
-    public Nave efectoEspecial(Nave nave) {
+    public Nave efectoEspecial(Nave nave){
         int i = nave.getVidas()+1;
         nave.setVidas(i);
         return nave;
+    }
+
+    /** Called when this screen is no longer the current screen for a {@link Game}. */
+	public void hide (){
+    }
+
+	public void dispose (){
     }
 }
