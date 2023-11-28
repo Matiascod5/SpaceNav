@@ -94,8 +94,9 @@ public class Heavymachingan implements Item{
 
     @Override
     public Nave efectoEspecial(Nave nave){
-        nave.setxVel(30);
-        nave.setyVel(30);
+        nave.añadirVelocidad(3);
+        //nave.setVelExtraX(4);
+        //nave.setVelExtraY(4);
         //nave.setDisparo(HeavyD);
         //nave.getDisparo().efectoEspecial;
         return nave;

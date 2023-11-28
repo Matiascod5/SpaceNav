@@ -80,6 +80,21 @@ public class PantallaJuego implements Screen {
 		return this.score;
 	}
 
+	public void seleccionarNivel(int ronda){
+		if (ronda <= 2){
+			nivel.setStrategy(new NivelEspacio());
+		}
+		else if (ronda <= 4){
+			nivel.setStrategy(new NivelHielo());
+		}
+		else if (ronda <= 6){
+			nivel.setStrategy(new NivelEspacio2());
+		}
+		else if (ronda <= 8){
+			nivel.setStrategy(new NivelHielo2());
+		}
+	}
+
 	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
 		this.game = game;
 		this.ronda = ronda;
@@ -95,9 +110,13 @@ public class PantallaJuego implements Screen {
 		camera.setToOrtho(false, 1200, 800);
 		//inicializar assets; musica de fondo y efectos de sonido
 
+		seleccionarNivel(ronda);
+
+		/*
 		if (ronda <= 2)
-			nivel.setStrategy(new NivelHielo());
+			nivel.setStrategy(new NivelHielo2());
 		else nivel.setStrategy(new NivelEspacio());
+		*/
 
 		nivel.crearNivel(Colisiones, musicaActivada, batch, ronda);
 	}

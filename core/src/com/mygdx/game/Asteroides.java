@@ -8,8 +8,8 @@ public abstract class Asteroides extends Enemigo{
 	int y = getY();
 	//private Sprite sprite;
 	
-	public Asteroides(Sprite sprite) {
-		super(sprite, 1, 1);
+	public Asteroides(Sprite sprite, int xVel, int yVel) {
+		super(sprite, xVel, yVel);
 	}
 
 	//movimiento

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class AsteroideCongelado extends Asteroides{
 
     public AsteroideCongelado() {
-		super(new Sprite(new Texture(Gdx.files.internal("AsteroideDeHieloF.png"))));
+		super(new Sprite(new Texture(Gdx.files.internal("AsteroideDeHieloF.png"))), 4, 4);
 	}
     
 }

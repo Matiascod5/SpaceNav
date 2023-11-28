@@ -17,6 +17,8 @@ public class Nave {
 	private int vidas;
 	private float xVel;
 	private float yVel;
+	private int velExtraX;
+	private int velExtraY;
 	private boolean herido;
 	private int tiempoHeridoMax;
 	private Sprite spr;
@@ -31,6 +33,8 @@ public class Nave {
 		this.vidas = vidas;
 		this.xVel = xVel;
 		this.yVel = yVel;
+		this.velExtraX = 0;
+		this.velExtraY = 0;
 		this.herido = false;
 		this.tiempoHeridoMax = tiempoHeridoMax; 
 		this.spr = tx;
@@ -49,16 +53,16 @@ public class Nave {
         if (!herido) {
 	        // que se mueva con teclado
 	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-				xVel = -3; //yVel = 0;
+				xVel = -3 - velExtraX; //yVel = 0;
 			} 
 	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-				xVel = 3; //yVel = 0;
+				xVel = 3 + velExtraX; //yVel = 0;
 			} 
         	if (Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-				yVel = -3; //xVel = 0;
+				yVel = -3 - velExtraY; //xVel = 0;
 			} 
 	        if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-				yVel = 3; //xVel = 0;
+				yVel = 3 + velExtraY; //xVel = 0;
 			}
 			if (!Gdx.input.isKeyPressed(Input.Keys.LEFT) && !Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
 				xVel = 0;
@@ -152,6 +156,11 @@ public class Nave {
     		b.mostrar(batch);
   	    }
     }
+
+	public void añadirVelocidad(int vel){
+		this.velExtraX += vel;
+		this.velExtraY += vel;
+	}
     
 	/*
     public boolean verificarColisionNave(Enemigo b) {
@@ -221,6 +230,14 @@ public class Nave {
 	public void setyVel(float yVel) {
 		this.yVel = yVel;
 	}
+
+	public void setVelExtraX(int velExtraX) {
+		this.velExtraX = velExtraX;
+	}
+	
+	public void setVelExtraY(int velExtraY) {
+		this.velExtraY = velExtraY;
+	}
 	
 	public void setHerido(boolean herido) {
 		this.herido = herido;
@@ -272,6 +289,14 @@ public class Nave {
 	
 	public float getyVel() {
 		return this.yVel;
+	}
+
+	public float getVelExtraX() {
+		return this.velExtraX;
+	}
+	
+	public float getVelExtraY() {
+		return this.velExtraY;
 	}
 	
 	public boolean getHerido() {
