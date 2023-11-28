@@ -86,7 +86,7 @@ public class PantallaMenu implements Screen {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
 		    // El usuario ha presionado la tecla "Enter", por lo que desea seleccionar la opción actual.
 		    if (opcionSeleccionada == 1) {
-		    	Screen ss = new PantallaJuego(game,1,3,0,10);
+		    	Screen ss = new PantallaJuego(game,1,3,0);
 				ss.resize(1200, 800);
 				game.setScreen(ss);
 				dispose();

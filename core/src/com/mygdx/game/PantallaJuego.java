@@ -47,17 +47,11 @@ public class PantallaJuego implements Screen {
 	}
 
 
-	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score, int cantAsteroides){
+	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
 		musicaActivada = Configuracion.isMusicaActivada();
-
-		if (ronda < 3)
-			nivel.setStrategy(new NivelEspacio());
-		else nivel.setStrategy(new NivelHielo());
-
-		nivel.crearNivel(Colisiones, musicaActivada);
 
 		director.construirNaveStarWars(builder);
 		nave = builder.getNave(); // editar nave aqui
@@ -78,6 +72,12 @@ public class PantallaJuego implements Screen {
 	        Enemigo bb = new asteroide_SMALL();	   
 	  	    Colisiones.añadirEnemigo(bb);
 	  	}*/
+
+		if (ronda < 3)
+			nivel.setStrategy(new NivelEspacio());
+		else nivel.setStrategy(new NivelHielo());
+
+		nivel.crearNivel(Colisiones, musicaActivada, batch);
 	}
 
 	public void gameOver(){
@@ -91,7 +91,7 @@ public class PantallaJuego implements Screen {
 	}
 
 	public void winScreen(){
-		Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, cantAsteroides+10);
+		Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score);
 		ss.resize(1200, 800);
 		game.setScreen(ss);
 		dispose();
@@ -110,9 +110,10 @@ public class PantallaJuego implements Screen {
 	public void render(float delta) {
 		  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		  //ScreenUtils.clear(0, 0, 0.2f, 1);
-          batch.begin();
 		  
-			//backgroundSprite.draw(game.getBatch());
+          batch.begin();
+
+		  nivel.getStrategy().mostrarFondo(batch);
           
 		  dibujaEncabezado();
 	      if (!nave.getHerido()) {

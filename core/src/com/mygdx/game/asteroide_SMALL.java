@@ -9,8 +9,4 @@ public class asteroide_SMALL extends Asteroides{
 	public asteroide_SMALL() {
 		super(new Sprite(new Texture(Gdx.files.internal("aGreyMedium4.png"))));
 	}
-	
-	public void sonido() {
-		
-	}
 }
