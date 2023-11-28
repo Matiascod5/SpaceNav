@@ -1,4 +1,5 @@
 package com.mygdx.game;
+
 import java.util.Random;
 
 import com.badlogic.gdx.Game;
@@ -9,24 +10,28 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Escudo implements Item{
+public class ItemPuntos implements Item{
+    private int contador;
+    private int puntos;
     private int x;
     private int y;
     private Sprite spr;
     private Sound sonidoItem;
-    private static final Escudo instance = new Escudo();
-    
-    private Escudo(){
+    private static final ItemPuntos instance = new ItemPuntos();
+
+    public ItemPuntos(){
+        this.contador = 200;
+        this.puntos = 100;
         setSpawn();
-        this.spr= new Sprite(new Texture(Gdx.files.internal("EscudoPowerUp.png")));
-        this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("EscudoSonido.wav"));
+        this.spr= new Sprite(new Texture(Gdx.files.internal("100.png")));
+        this.sonidoItem= Gdx.audio.newSound(Gdx.files.internal("Points.mp3"));
         spr.setPosition(x,y);
     }
 
-    public void setSpawn(){
+     public void setSpawn(){
         Random r = new Random();
         this.x = r.nextInt((int)Gdx.graphics.getWidth());
-        this.y = 750;
+        this.y = r.nextInt((int)Gdx.graphics.getHeight());
 
         int size = 20+r.nextInt(10);
 
@@ -37,14 +42,15 @@ public class Escudo implements Item{
         //validar que borde de esfera no quede fuera
     	if (y-size < 0) this.y = y+size;
     	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
+
     }
-
+	 
 	public boolean mover(){
-        this.y -= 6;
-
         spr.setPosition(x, y);
+        actualizarContador(contador);
 
-        if (this.y <= 20){
+        if (this.contador == 0){
+            this.contador = 200;
             dispose();
             return false;
         } 
@@ -53,8 +59,12 @@ public class Escudo implements Item{
 
     public void draw(SpriteBatch batch){
     	spr.draw(batch);
-    }
+    }  
 
+    public void setPuntos(int puntos){
+        this.puntos = puntos;
+    }
+    
     public void setX(int x){
         this.x = x;
     }
@@ -71,32 +81,43 @@ public class Escudo implements Item{
         this.sonidoItem = sonidoItem;
     }
 
+    public int getPuntos(){
+        return this.puntos;
+    }
+
     public Rectangle getArea(){
     	return spr.getBoundingRectangle();
     }
-	
+    
 	public Sound getSonidoItem(){
         return this.sonidoItem;
     }
-
-    public int getX(){
-        return this.x;
-    }  
 
     public int getY(){
         return this.y;
     }
 
-    public static Escudo getInstance(){
+    public int getX(){
+        return this.x;
+    } 
+
+    public static ItemPuntos getInstance(){
         return instance;
+    }
+
+    public void actualizarContador(float delta){
+        this.contador -= Gdx.graphics.getDeltaTime();
     }
 
     @Override
     public Object efectoEspecial(Nave nave, PantallaJuego game){
-        int i = nave.getVidas()+1;
-        nave.setVidas(i);
-        game.sumarScore(10);
-        return nave;
+        ((PantallaJuego)game).sumarScore(puntos);
+        //nave.añadirVelocidad(3);
+        //nave.setVelExtraX(4);
+        //nave.setVelExtraY(4);
+        //nave.setDisparo(HeavyD);
+        //nave.getDisparo().efectoEspecial;
+        return game;
     }
 
     /** Called when this screen is no longer the current screen for a {@link Game}. */
@@ -105,4 +126,5 @@ public class Escudo implements Item{
 
 	public void dispose (){
     }
+    
 }

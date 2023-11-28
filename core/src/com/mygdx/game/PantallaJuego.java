@@ -6,8 +6,6 @@ import java.util.Random;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -39,9 +37,10 @@ public class PantallaJuego implements Screen {
 
 	public void spawnItem(){
 		numRandom = new Random();
-		int numAleatorio = numRandom.nextInt(2) + 1;
+		int numAleatorio = numRandom.nextInt(3) + 1;
 		if (numAleatorio == 1) this.item = Heavymachingan.getInstance();
 		if (numAleatorio == 2) this.item = Escudo.getInstance();
+		if (numAleatorio == 3) this.item = ItemPuntos.getInstance();
 
 		this.itemSpawn = true;
 	}
@@ -63,7 +62,6 @@ public class PantallaJuego implements Screen {
 		dispose();
 	}
 
-    
 	public void dibujaEncabezado() {
 		CharSequence str = "Vidas: "+nave.getVidas()+" Ronda: "+ronda;
 		game.getFont().getData().setScale(2f);		
@@ -112,12 +110,6 @@ public class PantallaJuego implements Screen {
 
 		seleccionarNivel(ronda);
 
-		/*
-		if (ronda <= 2)
-			nivel.setStrategy(new NivelHielo2());
-		else nivel.setStrategy(new NivelEspacio());
-		*/
-
 		nivel.crearNivel(Colisiones, musicaActivada, batch, ronda);
 	}
 
@@ -154,7 +146,7 @@ public class PantallaJuego implements Screen {
 					itemSpawn = false;
 					item.setSpawn();
 				} 
-				if (Colisiones.verificarColisionNaveItem(item, nave)){
+				if (Colisiones.verificarColisionNaveItem(item, nave, this)){
 					item.setSpawn();
 					item.dispose();
 					itemSpawn = false;

@@ -38,7 +38,7 @@ public interface Item {
 
     public int getX();
 
-    public Nave efectoEspecial(Nave nave);
+    public Object efectoEspecial(Nave nave, PantallaJuego game);
 
     /** Called when this screen is no longer the current screen for a {@link Game}. */
 	public void hide ();

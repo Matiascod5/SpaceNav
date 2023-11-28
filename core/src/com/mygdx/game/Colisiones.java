@@ -195,7 +195,7 @@ public class Colisiones{
 	    return false;
     }
 
-	public boolean verificarColisionNaveItem(Item b, Nave a) {
+	public boolean verificarColisionNaveItem(Item b, Nave a, PantallaJuego game) {
     	if(!a.getHerido() && b.getArea().overlaps(a.getSprite().getBoundingRectangle())){
         	// rebote
 			//this = b.efectoEspecial(this);
@@ -210,8 +210,8 @@ public class Colisiones{
 			
 			a.setTiempoHerido(a.getTiempoHeridoMax());
   		    b.getSonidoItem().play();
-			b.efectoEspecial(a);
-			//b.setSpawn();
+
+			b.efectoEspecial(a, game);
 			return true;
         }
         return false;

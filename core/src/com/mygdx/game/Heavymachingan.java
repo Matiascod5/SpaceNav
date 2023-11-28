@@ -93,8 +93,9 @@ public class Heavymachingan implements Item{
     }
 
     @Override
-    public Nave efectoEspecial(Nave nave){
-        nave.añadirVelocidad(3);
+    public Object efectoEspecial(Nave nave, PantallaJuego game){
+        ((Nave)nave).añadirVelocidad(3);
+        game.sumarScore(10);
         //nave.setVelExtraX(4);
         //nave.setVelExtraY(4);
         //nave.setDisparo(HeavyD);
