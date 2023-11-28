@@ -93,14 +93,14 @@ public class Colisiones{
 		 }
 	}
 
-	public boolean verificarColisionEnemigoBala(PantallaJuego game, int score, Sound explosionSound, SpriteBatch batch){
+	public boolean verificarColisionEnemigoBala(PantallaJuego game, int score, Sound explosionSound, SpriteBatch batch, Niveles nivel){
 		for (int i = 0; i < balas.size(); i++){
 			Disparo b = balas.get(i);
 			b.movimiento();
 			//verificarColisionEnemigo(b, balls1, balls2, score, explosionSound, batch);
 			for (int j = 0; j < balls1.size(); j++) {    
 		    if (verificarColision(balls1.get(j), b)) {          
-		        explosionSound.play();
+		        nivel.getStrategy().Explosion();
 		        balls1.remove(j);
 		        balls2.remove(j);
 		        j--;

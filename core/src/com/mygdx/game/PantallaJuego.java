@@ -10,8 +10,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 //import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -26,12 +24,14 @@ public class PantallaJuego implements Screen {
 	private OrthographicCamera camera;	
 	private SpriteBatch batch;
 	private Sound explosionSound;
-	private Music gameMusic;
+	//private Music gameMusic;
 	private int cantAsteroides;
 	private Random numRandom;
 	private Item item;
 	private boolean musicaActivada = true;
 	private Colisiones Colisiones = new Colisiones();
+	private Niveles nivel = new Niveles();
+	//private NivelesStrategy strategy = new NivelEspacio();
 
 	private DirectorNave director = new DirectorNave();
 	private NaveBuilder builder = new NaveBuilder();
@@ -51,6 +51,13 @@ public class PantallaJuego implements Screen {
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
+		musicaActivada = Configuracion.isMusicaActivada();
+
+		if (ronda < 3)
+			nivel.setStrategy(new NivelEspacio());
+		else nivel.setStrategy(new NivelHielo());
+
+		nivel.crearNivel(Colisiones, musicaActivada);
 
 		director.construirNaveStarWars(builder);
 		nave = builder.getNave(); // editar nave aqui
@@ -60,24 +67,17 @@ public class PantallaJuego implements Screen {
 		//camera.setToOrtho(false, 800, 640);
 		camera.setToOrtho(false, 1200, 800);
 		//inicializar assets; musica de fondo y efectos de sonido
-		explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
-		explosionSound.setVolume(1,0.5f);
-		
 
-		musicaActivada = Configuracion.isMusicaActivada();
 
-        if (musicaActivada) {
-            gameMusic = Gdx.audio.newMusic(Gdx.files.internal("piano-loops.wav"));
-            gameMusic.setLooping(true);
-            gameMusic.setVolume(Configuracion.getVolumenMusica());
-            gameMusic.play();
-        }
+		//explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
+		//explosionSound.setVolume(1,0.5f);
 
 		//Spawn enemigos
+		/* 
 		for (int i = 0; i < cantAsteroides; i++) {
 	        Enemigo bb = new asteroide_SMALL();	   
 	  	    Colisiones.añadirEnemigo(bb);
-	  	}
+	  	}*/
 	}
 
 	public void gameOver(){
@@ -117,7 +117,7 @@ public class PantallaJuego implements Screen {
 		  dibujaEncabezado();
 	      if (!nave.getHerido()) {
 		    // colisiones entre balas y asteroides y su destruccion 
-			Colisiones.verificarColisionEnemigoBala(this, score, explosionSound, batch); //winScreen();
+			Colisiones.verificarColisionEnemigoBala(this, score, explosionSound, batch, nivel); //winScreen();
 			
 		    //actualizar movimiento de asteroides dentro del area
 			Colisiones.actualizarEnemigos(batch);
@@ -179,17 +179,12 @@ public class PantallaJuego implements Screen {
 	public int getScore(){
 		return this.score;
 	}
-    
-	/*
-    public void agregarBala(Disparo bb) {
-    	this.balas.add(bb);
-    }*/
 	
 	@Override
 	public void show() {
 		if (Preferences.getMusicaActivada()) {
 	        Configuracion.setMusicaActivada(true); // Establece la configuración de música en verdadero si las preferencias la tienen habilitada.
-	        gameMusic.play(); // Inicia la música solo si está habilitada en las preferencias.
+	        //gameMusic.play(); // Inicia la música solo si está habilitada en las preferencias.
 	    } else {
 	        Configuracion.setMusicaActivada(false); // Establece la configuración de música en falso si las preferencias la tienen deshabilitada.
 	    }
@@ -223,8 +218,10 @@ public class PantallaJuego implements Screen {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		this.explosionSound.dispose();
-		this.gameMusic.dispose();
+		//this.explosionSound.dispose();
+		nivel.getStrategy().apagarExplosion();
+		nivel.getStrategy().apagarMusica();
+		//this.gameMusic.dispose();
 	}
    
 }

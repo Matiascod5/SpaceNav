@@ -1,11 +1,8 @@
 package com.mygdx.game;
 
-//import java.util.ArrayList;
 import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 
@@ -15,9 +12,6 @@ public abstract class Enemigo {
 	private int xVel;
 	private int yVel;
 	private Sprite sprite;
-	//private int cantEnemigos;
-	//private  ArrayList<Enemigo> balls1 = new ArrayList<>();
-	//private  ArrayList<Enemigo> balls2 = new ArrayList<>();
 	
 	public Enemigo(Sprite sprite, int xVel, int yVel) {
 		Random r = new Random();
