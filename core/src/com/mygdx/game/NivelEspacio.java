@@ -11,9 +11,14 @@ public class NivelEspacio implements NivelesStrategy{
     private Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("piano-loops.wav"));
     private Sound explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
     private Sprite backgroundSprite = new Sprite(new Texture(Gdx.files.internal("Espacio.png")));
+    private int cantEnemigos;
+
+    public void aumentarDificultad(int ronda){
+        this.cantEnemigos += ronda * 10;
+    }
 
     public void crearEnemigos(Colisiones colisiones){
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < this.cantEnemigos; i++) {
 	        Enemigo bb = new asteroide_SMALL();	   
 	  	    colisiones.añadirEnemigo(bb);
 	  	}

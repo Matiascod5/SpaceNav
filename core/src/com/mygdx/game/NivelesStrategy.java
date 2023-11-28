@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public interface NivelesStrategy{
+    public void aumentarDificultad(int ronda);
+
     public void crearEnemigos(Colisiones colisiones);
 
     public void Fondo(SpriteBatch batch);

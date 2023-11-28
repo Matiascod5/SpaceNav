@@ -23,9 +23,9 @@ public class PantallaJuego implements Screen {
 
 	private OrthographicCamera camera;	
 	private SpriteBatch batch;
-	private Sound explosionSound;
+	//private Sound explosionSound;
 	//private Music gameMusic;
-	private int cantAsteroides;
+	//private int cantAsteroides;
 	private Random numRandom;
 	private Item item;
 	private boolean musicaActivada = true;
@@ -44,40 +44,6 @@ public class PantallaJuego implements Screen {
 		if (numAleatorio == 2) this.item = Escudo.getInstance();
 
 		this.itemSpawn = true;
-	}
-
-
-	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
-		this.game = game;
-		this.ronda = ronda;
-		this.score = score;
-		musicaActivada = Configuracion.isMusicaActivada();
-
-		director.construirNaveStarWars(builder);
-		nave = builder.getNave(); // editar nave aqui
-
-		batch = game.getBatch();
-		camera = new OrthographicCamera();	
-		//camera.setToOrtho(false, 800, 640);
-		camera.setToOrtho(false, 1200, 800);
-		//inicializar assets; musica de fondo y efectos de sonido
-
-
-		//explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
-		//explosionSound.setVolume(1,0.5f);
-
-		//Spawn enemigos
-		/* 
-		for (int i = 0; i < cantAsteroides; i++) {
-	        Enemigo bb = new asteroide_SMALL();	   
-	  	    Colisiones.añadirEnemigo(bb);
-	  	}*/
-
-		if (ronda < 3)
-			nivel.setStrategy(new NivelEspacio());
-		else nivel.setStrategy(new NivelHielo());
-
-		nivel.crearNivel(Colisiones, musicaActivada, batch);
 	}
 
 	public void gameOver(){
@@ -106,6 +72,36 @@ public class PantallaJuego implements Screen {
 		game.getFont().draw(batch, "HighScore:"+game.getHighScore(), Gdx.graphics.getWidth()/2-100, 30);
 	}
 
+	public void sumarScore(int score){
+		this.score += score;
+	}
+
+	public int getScore(){
+		return this.score;
+	}
+
+	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
+		this.game = game;
+		this.ronda = ronda;
+		this.score = score;
+		musicaActivada = Configuracion.isMusicaActivada();
+
+		director.construirNaveStarWars(builder);
+		nave = builder.getNave(); // editar nave aqui
+
+		batch = game.getBatch();
+		camera = new OrthographicCamera();	
+		//camera.setToOrtho(false, 800, 640);
+		camera.setToOrtho(false, 1200, 800);
+		//inicializar assets; musica de fondo y efectos de sonido
+
+		if (ronda <= 2)
+			nivel.setStrategy(new NivelHielo());
+		else nivel.setStrategy(new NivelEspacio());
+
+		nivel.crearNivel(Colisiones, musicaActivada, batch, ronda);
+	}
+
 	@Override
 	public void render(float delta) {
 		  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -118,13 +114,16 @@ public class PantallaJuego implements Screen {
 		  dibujaEncabezado();
 	      if (!nave.getHerido()) {
 		    // colisiones entre balas y asteroides y su destruccion 
-			Colisiones.verificarColisionEnemigoBala(this, score, explosionSound, batch, nivel); //winScreen();
+			Colisiones.verificarColisionEnemigoBala(this, score, batch, nivel); //winScreen();
 			
 		    //actualizar movimiento de asteroides dentro del area
 			Colisiones.actualizarEnemigos(batch);
 
 		    //colisiones entre asteroides y sus rebotes 
 			Colisiones.colisionesEnemigos();
+
+			//dibujar asteroides y manejar colision con nave
+	    	Colisiones.colisionesNaveAsteroide(nave);
 
 			if (itemSpawn == false){
 				numRandom = new Random();
@@ -144,18 +143,16 @@ public class PantallaJuego implements Screen {
 				item.draw(batch);
 		  	}
 		}
-			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    		nave.disparar(batch, Colisiones);
-	      	}
+		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+	    	nave.disparar(batch, Colisiones);
+	    }
 	      
 		Colisiones.actualizarBalas(batch);
+
 	    nave.movimiento(batch, this);
 
-
 		Colisiones.mostrarEnemigo(batch);
-
-	    //dibujar asteroides y manejar colision con nave
-	    Colisiones.colisionesNaveAsteroide(nave);
 
 		if (nave.getVidas() <= 0) gameOver();
 
@@ -168,17 +165,7 @@ public class PantallaJuego implements Screen {
 			ss.resize(1200, 800);
 			game.setScreen(ss);
 			dispose();
-		}
-	      
-	    	 
-	}
-
-	public void sumarScore(int score){
-		this.score += score;
-	}
-
-	public int getScore(){
-		return this.score;
+		}	 
 	}
 	
 	@Override

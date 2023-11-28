@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Niveles {
     private NivelesStrategy strategy;
 
-    public void crearNivel(Colisiones colisiones, boolean musicaActivada, SpriteBatch batch){
+    public void crearNivel(Colisiones colisiones, boolean musicaActivada, SpriteBatch batch, int ronda){
+        strategy.aumentarDificultad(ronda);
         strategy.crearEnemigos(colisiones);
         strategy.Fondo(batch);
         strategy.Musica(musicaActivada);

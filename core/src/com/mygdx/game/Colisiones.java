@@ -93,7 +93,7 @@ public class Colisiones{
 		 }
 	}
 
-	public boolean verificarColisionEnemigoBala(PantallaJuego game, int score, Sound explosionSound, SpriteBatch batch, Niveles nivel){
+	public boolean verificarColisionEnemigoBala(PantallaJuego game, int score, SpriteBatch batch, Niveles nivel){
 		for (int i = 0; i < balas.size(); i++){
 			Disparo b = balas.get(i);
 			b.movimiento();
@@ -105,7 +105,6 @@ public class Colisiones{
 		        balls2.remove(j);
 		        j--;
 				this.cantEnemigos--;
-		        //int k = game.getScore() + 10;
 				game.sumarScore(10);
 		    }   	  
 		}
