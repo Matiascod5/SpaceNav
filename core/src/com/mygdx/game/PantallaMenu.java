@@ -55,7 +55,7 @@ public class PantallaMenu implements Screen {
 		game.getBatch().begin();
 		backgroundSprite.draw(game.getBatch());
 		game.getFont().draw(game.getBatch(), "Bienvenido a Space Navigation !", 140, 400);
-		game.getFont().draw(game.getBatch(), "Pincha en cualquier lado o presiona cualquier tecla para comenzar ...", 100, 300);
+		game.getFont().draw(game.getBatch(), "Seleccion alguna opcion", 100, 300);
 		game.getFont().draw(game.getBatch(), "Jugar", 200, 200);
 		game.getFont().draw(game.getBatch(), "Mercado", 200, 150);
 		game.getFont().draw(game.getBatch(), "Opciones", 200, 100);

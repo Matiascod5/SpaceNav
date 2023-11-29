@@ -27,6 +27,10 @@ public abstract class Disparo {
 		this.destroyed = false;
 	}
 
+	public Disparo(float x, float y ){
+
+	}
+
 
 
 	public Disparo formatearDisparo(float x, float y){

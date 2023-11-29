@@ -76,7 +76,7 @@ public class PantallaOpciones implements Screen {
 		game.getFont().draw(game.getBatch(), "Subir volumen", 200, 200);
 		game.getFont().draw(game.getBatch(), "Bajar volumen", 200, 150);
 		game.getFont().draw(game.getBatch(), "Apagar/prender Musica:", 200, 100);
-		game.getFont().draw(game.getBatch(), "Resolucion(no sirve)", 200, 50);
+		game.getFont().draw(game.getBatch(), "Salir", 200, 50);
         cursorSprite.draw(game.getBatch());
 
         
@@ -131,16 +131,12 @@ public class PantallaOpciones implements Screen {
 		        Preferences.setMusicaActivada(Configuracion.isMusicaActivada());
 		    } else if (opcionSeleccionada == 4) {
 		        // Realizar acciones relacionadas con la opción 4
+				Screen ss = new PantallaMenu(game);
+				ss.resize(1200, 800);
+				game.setScreen(ss);
+				dispose();
 		        // ...
 		    }
-		}
-
-
-		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			Screen ss = new PantallaMenu(game);
-			ss.resize(1200, 800);
-			game.setScreen(ss);
-			dispose();
 		}
 	}
 	

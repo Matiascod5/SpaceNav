@@ -31,6 +31,10 @@ public class PantallaJuego implements Screen {
 	private Niveles nivel = new Niveles();
 	//private NivelesStrategy strategy = new NivelEspacio();
 
+	private MenuBuilder menuPausaBuilder = new MenuPausaBuilder();
+    private DirectorMenu directorMenu = new DirectorMenu() ;
+    private Menu menuPausa;
+
 	private DirectorNave director = new DirectorNave();
 	private NaveBuilder builder = new NaveBuilder();
 	private Nave nave;
@@ -53,6 +57,10 @@ public class PantallaJuego implements Screen {
   			game.setScreen(ss);
   			dispose();
 		}
+		Screen ss = new PantallaGameOver(game);
+  		ss.resize(1200, 800);
+  		game.setScreen(ss);
+  		dispose();
 	}
 
 	public void winScreen(){
@@ -97,10 +105,10 @@ public class PantallaJuego implements Screen {
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
-		musicaActivada = Configuracion.isMusicaActivada();
+		this.musicaActivada = Preferences.getMusicaActivada();
 
 		director.construirNaveStarWars(builder);
-		nave = builder.getNave(); // editar nave aqui
+		this.nave = builder.getNave(); // editar nave aqui
 
 		batch = game.getBatch();
 		camera = new OrthographicCamera();	
@@ -156,7 +164,7 @@ public class PantallaJuego implements Screen {
 		}
 		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    	nave.disparar(batch, Colisiones);
+	    	nave.disparar(batch, Colisiones, builder);
 	    }
 	      
 		Colisiones.actualizarBalas(batch);

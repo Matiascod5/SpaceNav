@@ -15,13 +15,13 @@ public abstract class Asteroides extends Enemigo{
 	//movimiento
 
 	public void movimiento() {
-        x += getxVel();
-        y += getyVel();
-
+       
         if (x+getxVel() < 0 || x+getxVel()+getSprite().getWidth() > Gdx.graphics.getWidth())
         	setxVel(getxVel() * -1);
         if (y+getyVel() < 0 || y+getyVel()+getSprite().getHeight() > Gdx.graphics.getHeight())
         	setyVel(getyVel() * -1);
+		x += getxVel();
+        y += getyVel();
         getSprite().setPosition(x, y);
     }
 }
