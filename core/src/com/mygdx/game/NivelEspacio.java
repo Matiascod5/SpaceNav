@@ -14,7 +14,7 @@ public class NivelEspacio implements NivelesStrategy{
     private int cantEnemigos;
 
     public void aumentarDificultad(int ronda){
-        this.cantEnemigos += ronda * 10;
+        this.cantEnemigos += ronda * 5;
     }
 
     public void crearEnemigos(Colisiones colisiones){

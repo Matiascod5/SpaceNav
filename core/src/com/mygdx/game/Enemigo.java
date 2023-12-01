@@ -14,16 +14,14 @@ public abstract class Enemigo {
 	private Sprite sprite;
 	
 	public Enemigo(Sprite sprite, int xVel, int yVel) {
-		Random r = new Random();
+		setSpawn();
+		//Random r = new Random();
 		this.sprite = sprite;
-		//setSprite(sprite);
-		this.x = r.nextInt((int)Gdx.graphics.getWidth());
-		//setX(r.nextInt((int)Gdx.graphics.getWidth()));
-		this.y = 50+r.nextInt((int)Gdx.graphics.getHeight()-50);
-		//setY(50+r.nextInt((int)Gdx.graphics.getHeight()-50));
+		//this.x = r.nextInt((int)Gdx.graphics.getWidth());
+		//this.y = 50+r.nextInt((int)Gdx.graphics.getHeight()-50);
 		this.xVel = xVel;
 		this.yVel = yVel;
-		
+		/* 
 		int size = 20+r.nextInt(10);
 		
 		if (x-size < 0) this.x = x+size;
@@ -32,10 +30,27 @@ public abstract class Enemigo {
         //validar que borde de esfera no quede fuera
     	if (y-size < 0) this.y = y+size;
     	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
-    	
+    	*/
         sprite.setPosition(x, y);
         this.setxVel(xVel);
         this.setyVel(yVel);
+	}
+
+	public void setSpawn(){
+		Random r = new Random();
+		this.x = 200+r.nextInt((int)Gdx.graphics.getWidth()-200);
+		this.y = 200+r.nextInt((int)Gdx.graphics.getHeight()-200);
+
+		/* 
+		int size = 20+r.nextInt(10);
+		
+		if (x-size < 0) this.x = x+size-1;
+    	if (x+size > Gdx.graphics.getWidth())this.x = x-size+1;
+         
+        //validar que borde de esfera no quede fuera
+    	if (y-size < 0) this.y = y+size-1;
+    	if (y+size > Gdx.graphics.getHeight())this.y = y-size+1;
+		*/
 	}
 	
 	public abstract void movimiento();
