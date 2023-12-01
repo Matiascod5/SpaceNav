@@ -99,6 +99,12 @@ public class PantallaJuego implements Screen {
 		else if (ronda <= 8){
 			nivel.setStrategy(new NivelHielo2());
 		}
+		else{
+			Random numRandom = new Random();
+			int numAleatorio = numRandom.nextInt(2) + 1;
+			if (numAleatorio == 1) nivel.setStrategy(new NivelEspacio2());
+			if (numAleatorio == 2) nivel.setStrategy(new NivelHielo2());
+		}
 	}
 
 	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
