@@ -19,6 +19,7 @@ public class Colisiones{
 	}
 
 	public void añadirEnemigo(Enemigo enemigo) {
+		colisionSpawn(enemigo);
 	  	balls1.add(enemigo);
 	  	balls2.add(enemigo);
 		this.cantEnemigos++;
@@ -30,6 +31,20 @@ public class Colisiones{
 			Sprite sprite = enemigo.getSprite();
 			sprite.draw(batch);
 		}
+	}
+
+	public void colisionSpawn(Enemigo b){
+		Enemigo b2;
+		
+		for (int k = 0 ; k < balls1.size(); k++){
+		b2 = balls1.get(k);
+			//if (b != b2){
+			if (b.getSprite().getBoundingRectangle().overlaps(b2.getSprite().getBoundingRectangle())){
+				b.setSpawn();	
+				//k = 0;
+			}	
+			//}
+		}	
 	}
     
     public void colisionesEnemigos() {

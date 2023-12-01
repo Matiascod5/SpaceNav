@@ -19,7 +19,7 @@ public class ItemPuntos implements Item{
     private Sound sonidoItem;
     private static final ItemPuntos instance = new ItemPuntos();
 
-    public ItemPuntos(){
+    private ItemPuntos(){
         this.contador = 200;
         this.puntos = 100;
         setSpawn();

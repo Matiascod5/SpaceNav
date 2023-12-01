@@ -29,11 +29,12 @@ public class PantallaJuego implements Screen {
 	private boolean musicaActivada = true;
 	private Colisiones Colisiones = new Colisiones();
 	private Niveles nivel = new Niveles();
+	private boolean juegoPausado = false;
 	//private NivelesStrategy strategy = new NivelEspacio();
 
-	//private MenuBuilder menuPausaBuilder = new MenuPausaBuilder();
-    //private DirectorMenu directorMenu = new DirectorMenu() ;
-    //private Menu menuPausa;
+	private MenuBuilder menuPausaBuilder = new MenuPausaBuilder();
+    private DirectorMenu directorMenu = new DirectorMenu() ;
+    private Menu menuPausa;
 
 	private DirectorNave director = new DirectorNave();
 	private NaveBuilder builder = new NaveBuilder();
@@ -99,6 +100,12 @@ public class PantallaJuego implements Screen {
 		else if (ronda <= 8){
 			nivel.setStrategy(new NivelHielo2());
 		}
+		else{
+			Random numRandom = new Random();
+			int numAleatorio = numRandom.nextInt(2) + 1;
+			if (numAleatorio == 1) nivel.setStrategy(new NivelEspacio2());
+			if (numAleatorio == 2) nivel.setStrategy(new NivelHielo2());
+		}
 	}
 
 	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
@@ -109,6 +116,9 @@ public class PantallaJuego implements Screen {
 
 		director.construirNaveDefault(builder);
 		this.nave = builder.getNave(); // editar nave aqui
+
+		directorMenu.construirMenuPausa(menuPausaBuilder);
+		this.menuPausa = menuPausaBuilder.construirMenu();
 
 		batch = game.getBatch();
 		camera = new OrthographicCamera();	
@@ -123,68 +133,69 @@ public class PantallaJuego implements Screen {
 
 	@Override
 	public void render(float delta) {
-		  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		  //ScreenUtils.clear(0, 0, 0.2f, 1);
-		  
-          batch.begin();
-
-		  nivel.getStrategy().mostrarFondo(batch);
-          
-		  dibujaEncabezado();
-	      if (!nave.getHerido()) {
-		    // colisiones entre balas y asteroides y su destruccion 
-			Colisiones.verificarColisionEnemigoBala(this, score, batch, nivel); //winScreen();
+		if (!juegoPausado) {
+			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			//ScreenUtils.clear(0, 0, 0.2f, 1);
 			
-		    //actualizar movimiento de asteroides dentro del area
-			Colisiones.actualizarEnemigos(batch);
+			batch.begin();
 
-		    //colisiones entre asteroides y sus rebotes 
-			Colisiones.colisionesEnemigos();
+			nivel.getStrategy().mostrarFondo(batch);
+			
+			dibujaEncabezado();
+			if (!nave.getHerido()) {
+				// colisiones entre balas y asteroides y su destruccion 
+				Colisiones.verificarColisionEnemigoBala(this, score, batch, nivel); //winScreen();
+				
+				//actualizar movimiento de asteroides dentro del area
+				Colisiones.actualizarEnemigos(batch);
 
-			//dibujar asteroides y manejar colision con nave
-	    	Colisiones.colisionesNaveAsteroide(nave);
+				//colisiones entre asteroides y sus rebotes 
+				Colisiones.colisionesEnemigos();
 
-			if (itemSpawn == false){
-				numRandom = new Random();
-		  		int numeroAleatorio = numRandom.nextInt(100) + 1;
-				if (numeroAleatorio == 4) spawnItem();
-		  	}
-		  	else{
-				if (!item.mover()){
-					itemSpawn = false;
-					item.setSpawn();
-				} 
-				if (Colisiones.verificarColisionNaveItem(item, nave, this)){
-					item.setSpawn();
-					item.dispose();
-					itemSpawn = false;
-				} 
-				item.draw(batch);
-		  	}
+				//dibujar asteroides y manejar colision con nave
+				Colisiones.colisionesNaveAsteroide(nave);
+
+				if (itemSpawn == false){
+					numRandom = new Random();
+					int numeroAleatorio = numRandom.nextInt(100) + 1;
+					if (numeroAleatorio == 4) spawnItem();
+				}
+				else{
+					if (!item.mover()){
+						itemSpawn = false;
+						item.setSpawn();
+					} 
+					if (Colisiones.verificarColisionNaveItem(item, nave, this)){
+						item.setSpawn();
+						item.dispose();
+						itemSpawn = false;
+					} 
+					item.draw(batch);
+				}
+			}
+			
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+				nave.disparar(batch, Colisiones, builder);
+			}
+			
+			Colisiones.actualizarBalas(batch);
+
+			nave.movimiento(batch, this);
+
+			Colisiones.mostrarEnemigo(batch);
+
+			if (nave.getVidas() <= 0) gameOver();
+
+			if (Colisiones.getcantEnemigos() <= 0) winScreen();
+
+			batch.end();
+			
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				juegoPausado = true;
+			}	 
+
 		}
-		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-	    	nave.disparar(batch, Colisiones, builder);
-	    }
-	      
-		Colisiones.actualizarBalas(batch);
-
-	    nave.movimiento(batch, this);
-
-		Colisiones.mostrarEnemigo(batch);
-
-		if (nave.getVidas() <= 0) gameOver();
-
-		if (Colisiones.getcantEnemigos() <= 0) winScreen();
-
-	    batch.end();
-		  
-	    if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			Screen ss = new PantallaPausa(game, this);
-			ss.resize(1200, 800);
-			game.setScreen(ss);
-			dispose();
-		}	 
+		menuPausa.mostrar(batch);
 	}
 	
 	@Override

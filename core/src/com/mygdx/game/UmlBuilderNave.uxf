@@ -1,9 +1,95 @@
-<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>128</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;DirectorNave&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><element><id>UMLClass</id><coordinates><x>245</x><y>60</y><w>150</w><h>95</h></coordinates><panel_attributes>&lt;&lt;DirectorNave&gt;&gt;
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>128</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Builder&gt;&gt;
++ construirNaveDefault(builder: Builder): void
++ construirNaveStarWars(builder: Builder): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>485</x><y>60</y><w>170</w><h>95</h></coordinates><panel_attributes>&lt;&lt;Builder&gt;&gt;
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>192</x><y>192</y><w>176</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;200;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>384</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;NaveBuilder&gt;&gt;
++ setTipoNave(tipo: TipoNave): void
++ setVidas(vidas: int): void 
++ setVelocidades(xVel: float, yVel: float): void 
++ setSprite(tx: Texture): void 
++ setSonidoHerido(sonidoHerido: Sound): void 
++ setTiempoHeridoMax(tiempoHeridoMax: int): void
++ setDisparo(disparo: Disparo): void
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>385</x><y>100</y><w>110</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;200;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>455</x><y>250</y><w>170</w><h>160</h></coordinates><panel_attributes>&lt;&lt;NaveBuilder&gt;&gt;
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>272</y><w>24</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>512</x><y>464</y><w>176</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>200;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>672</x><y>384</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Nave&gt;&gt;
+- tipo: TipoNave  
+ - vidas: int      
+ - xVel: float     
+ - yVel: float     
+ - tiempoHeridoMax: int 
+ - sprite: Sprite  
+ - disparo: Disparo
+ - sonidoHerido: Sound
+
 --
+
++ setTipoNave(tipo: TipoNave): void               
+ + setVidas(vidas: int): void                       
+ + setVelocidades(xVel: float, yVel: float): void  
+ + setSprite(tx: Texture): void                    
+ + setSonidoHerido(sonidoHerido: Sound): void       
+ + setTiempoHeridoMax(tiempoHeridoMax: int): void   
+ + setDisparo(disparo: Disparo): void               
+ + getNave(): Nave   
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>150</y><w>15</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;200</additional_attributes></element><element><id>Relation</id><coordinates><x>620</x><y>300</y><w>130</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>240;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>250</y><w>445</w><h>440</h></coordinates><panel_attributes>&lt;&lt;Nave&gt;&gt;
+--
+
+- tipo: TipoNave
+- vidas: int
+- xVel: float
+- yVel: float
+- velExtraX: int
+- velExtraY: int
+- herido: boolean
+- tiempoHeridoMax: int
+- spr: Sprite
+- disparo: Disparo
+- sonidoHerido: Sound
+- tiempoHerido: int
+- destruido: boolean
+
+--
+
++ Nave(vidas: int, xVel: float, yVel: float, tx: Sprite, sonidoHerido: Sound, tiempoHeridoMax: int, disparo: Disparo, tipo: TipoNave)
++ movimiento(batch: SpriteBatch, juego: PantallaJuego): void
++ movimiento(): void
++ disparar(batch: SpriteBatch, Colisiones: Colisiones, builder: Builder): void
++ mostrarDisparo(batch: SpriteBatch, balas: ArrayList&lt;Disparo&gt;): void
++ añadirVelocidad(vel: int): void
++ setVidas(vidas: int): void
++ setxVel(xVel: float): void
++ setyVel(yVel: float): void
++ setVelExtraX(velExtraX: int): void
++ setVelExtraY(velExtraY: int): void
++ setHerido(herido: boolean): void
++ setTiempoHerido(tiempoHerido: int): void
++ setTiempoHeridoMax(tiempoHeridoMax: int): void
++ setSpriteTexture(tx: Texture): void
++ setSpritePosition(x: int, y: int): void
++ setSpriteBounds(a: int, b: int, c: int, d: int): void
++ setSonidoHerido(sonidoHerido: Sound): void
++ setDestruido(destruido: boolean): void
++ setDisparo(disparo: Disparo): void
++ setTipoNave(tipo: TipoNave): void
++ getVidas(): int
++ getxVel(): float
++ getyVel(): float
++ getVelExtraX(): int
++ getVelExtraY(): int
++ getHerido(): boolean
++ getTiempoHerido(): int
++ getTiempoHeridoMax(): int
++ getSprite(): Sprite
++ getX(): int
++ getY(): int
++ getWidth(): int
++ getHeight(): int
++ getSonidoHerido(): Sound
++ getDestruido(): boolean
++ getDisparo(): Disparo
++ getTipoNave(): TipoNave
+
 </panel_attributes><additional_attributes></additional_attributes></element></diagram>

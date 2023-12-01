@@ -1,0 +1,104 @@
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>180</x><y>138</y><w>348</w><h>114</h></coordinates><panel_attributes>&lt;&lt;Contexto&gt;&gt;
+Niveles
+
+--
+- strategy: NivelesStrategy
+
+--
+
++ crearNivel(colisiones: Colisiones, musicaActivada: boolean, batch: SpriteBatch, ronda: int): void
++ setStrategy(strategy: NivelesStrategy): void
++ getStrategy(): NivelesStrategy</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>186</y><w>258</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;410;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>768</x><y>102</y><w>126</w><h>150</h></coordinates><panel_attributes>&lt;&lt;Interfaz&gt;&gt;
+NivelesStrategy
+
+--
+
+aumentarDificultad(ronda: int)
+ crearEnemigos(colisiones: Colisiones)
+ Fondo(batch: SpriteBatch)
+ Musica(musicaActivada: boolean)
+ apagarMusica()
+ apagarExplosion()
+ Explosion()
+ mostrarFondo(batch: SpriteBatch)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>708</x><y>414</y><w>144</w><h>180</h></coordinates><panel_attributes>&lt;&lt;NivelEspacio2&gt;
+
+--
+
+- gameMusic: Music  
+- explosionSound: Sound
+- backgroundSprite: Sprite
+- cantEnemigos: int
+
+--
+
++ aumentarDificultad(ronda: int)
++ crearEnemigos(colisiones: Colisiones)
++ Fondo(batch: SpriteBatch)
++ Musica(musicaActivada: boolean)
++ apagarMusica()
++ Explosion()
++ apagarExplosion()
++ mostrarFondo(batch: SpriteBatch)
++ borrarFondo(batch: SpriteBatch)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>522</x><y>414</y><w>156</w><h>180</h></coordinates><panel_attributes>&lt;&lt;NivelSpacio&gt;&gt;
+
+--
+
+- gameMusic: Music  
+- explosionSound: Sound
+- backgroundSprite: Sprite
+- cantEnemigos: int
+
+--
+
++ aumentarDificultad(ronda: int)
++ crearEnemigos(colisiones: Colisiones)
++ Fondo(batch: SpriteBatch)
++ Musica(musicaActivada: boolean)
++ apagarMusica()
++ Explosion()
++ apagarExplosion()
++ mostrarFondo(batch: SpriteBatch)
++ borrarFondo(batch: SpriteBatch)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>876</x><y>414</y><w>144</w><h>180</h></coordinates><panel_attributes>&lt;&lt;NivelHielo&gt;&gt;
+
+--
+
+- gameMusic: Music  
+- explosionSound: Sound
+- backgroundSprite: Sprite
+- cantEnemigos: int
+
+--
+
++ aumentarDificultad(ronda: int)
++ crearEnemigos(colisiones: Colisiones)
++ Fondo(batch: SpriteBatch)
++ Musica(musicaActivada: boolean)
++ apagarMusica()
++ Explosion()
++ apagarExplosion()
++ mostrarFondo(batch: SpriteBatch)
++ borrarFondo(batch: SpriteBatch)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1044</x><y>414</y><w>156</w><h>180</h></coordinates><panel_attributes>&lt;&lt;NivelHielo2&gt;&gt;
+
+--
+- gameMusic: Music  
+- explosionSound: Sound
+- backgroundSprite: Sprite
+- cantEnemigos: int
+
+--
+
++ aumentarDificultad(ronda: int)
++ crearEnemigos(colisiones: Colisiones)
++ Fondo(batch: SpriteBatch)
++ Musica(musicaActivada: boolean)
++ apagarMusica()
++ Explosion()
++ apagarExplosion()
++ mostrarFondo(batch: SpriteBatch)
++ borrarFondo(batch: SpriteBatch)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>606</x><y>240</y><w>174</w><h>186</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>270;10;10;290</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>246</y><w>54</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>70;10;10;280</additional_attributes></element><element><id>Relation</id><coordinates><x>852</x><y>246</y><w>108</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;160;280</additional_attributes></element><element><id>Relation</id><coordinates><x>888</x><y>246</y><w>234</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;370;280</additional_attributes></element></diagram>

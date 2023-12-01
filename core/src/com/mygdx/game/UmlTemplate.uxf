@@ -1,0 +1,58 @@
+<diagram program="umletino" version="15.1"><zoom_level>6</zoom_level><element><id>UMLClass</id><coordinates><x>450</x><y>35</y><w>126</w><h>252</h></coordinates><panel_attributes>&lt;&lt;Abstract Class&gt;&gt;
+Enemigo
+
+--
+
+- x: int
+- y: int
+- xVel: int
+- yVel: int
+- sprite: Sprite
+
+--
+
++ Enemigo(sprite: Sprite, xVel: int, yVel: int)
++ setSpawn()
++ abstract movimiento()
++ getArea(): Rectangle
++ setPosition()
++ setX(x: int)
++ setY(y: int)
++ setxVel(xVel: int)
++ setyVel(yVel: int)
++ setSprite(sprite: Sprite)
++ getX(): int
++ getY(): int
++ getxVel(): int
++ getyVel(): int
++ getSprite(): Sprite</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>450</x><y>371</y><w>126</w><h>114</h></coordinates><panel_attributes>&lt;&lt;Abstract Class&gt;&gt;
+Asteroide
+
+--
+
+- x: int
+- y: int
+
+--
+
++ Asteroides(sprite: Sprite, xVel: int, yVel: int)
++ movimiento()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>281</y><w>18</w><h>102</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>216</x><y>545</y><w>126</w><h>114</h></coordinates><panel_attributes>&lt;&lt;Asteroide_Big&gt;&gt;
+
+--
+
++ asteroide_BIG()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>384</x><y>545</y><w>126</w><h>114</h></coordinates><panel_attributes>&lt;&lt;Asteroide_SMall&gt;&gt;
+
+--
+
++ asteroide_SMALL()
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>545</y><w>126</w><h>114</h></coordinates><panel_attributes>&lt;&lt;AsteroideCongelado_Big&gt;&gt;
+
+--
+
++ AsteroideCongelado_BIG()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>708</x><y>545</y><w>126</w><h>114</h></coordinates><panel_attributes>&lt;&lt;AsteroideCongelado&gt;&gt;
+
+--
+
++ AsteroideCongelado()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>479</y><w>192</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>300;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>479</y><w>66</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>522</x><y>479</y><w>78</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;110;110</additional_attributes></element><element><id>Relation</id><coordinates><x>570</x><y>479</y><w>222</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;350;110</additional_attributes></element></diagram>
