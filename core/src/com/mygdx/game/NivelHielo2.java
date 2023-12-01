@@ -14,7 +14,8 @@ public class NivelHielo2 implements NivelesStrategy{
     private int cantEnemigos;
 
     public void aumentarDificultad(int ronda){
-        this.cantEnemigos += ronda * 5;
+        this.cantEnemigos += ronda * 3;
+        if (this.cantEnemigos > 10) this.cantEnemigos = 10;
     }
 
     public void crearEnemigos(Colisiones colisiones){

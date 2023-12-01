@@ -38,18 +38,18 @@ public abstract class Enemigo {
 
 	public void setSpawn(){
 		Random r = new Random();
-		this.x = 50+r.nextInt((int)Gdx.graphics.getWidth()-50);
-		this.y = 50+r.nextInt((int)Gdx.graphics.getHeight()-50);
+		this.x = 200+r.nextInt((int)Gdx.graphics.getWidth()-200);
+		this.y = 200+r.nextInt((int)Gdx.graphics.getHeight()-200);
 
-		/*
+		/* 
 		int size = 20+r.nextInt(10);
 		
-		if (x-size < 0) this.x = x+size;
-    	if (x+size > Gdx.graphics.getWidth())this.x = x-size;
+		if (x-size < 0) this.x = x+size-1;
+    	if (x+size > Gdx.graphics.getWidth())this.x = x-size+1;
          
         //validar que borde de esfera no quede fuera
-    	if (y-size < 0) this.y = y+size;
-    	if (y+size > Gdx.graphics.getHeight())this.y = y-size;
+    	if (y-size < 0) this.y = y+size-1;
+    	if (y+size > Gdx.graphics.getHeight())this.y = y-size+1;
 		*/
 	}
 	

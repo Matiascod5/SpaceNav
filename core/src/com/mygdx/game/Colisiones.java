@@ -47,6 +47,21 @@ public class Colisiones{
 		}	
 	}
     
+	public void colisionSpawn(Enemigo b){
+		Enemigo b2;
+		
+		for (int k = 0 ; k < balls1.size(); k++){
+		b2 = balls1.get(k);
+			//if (b != b2){
+			if (b.getSprite().getBoundingRectangle().overlaps(b2.getSprite().getBoundingRectangle())){
+				b.setSpawn();	
+				//k = 0;
+			}	
+			//}
+		}
+			
+	}
+
     public void colisionesEnemigos() {
 		for (int i = 0 ; i<balls1.size() ; i++) {
 		    Enemigo ball1 = balls1.get(i);   
