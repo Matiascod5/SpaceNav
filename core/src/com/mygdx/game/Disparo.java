@@ -70,6 +70,9 @@ public abstract class Disparo {
 	    return false;
     }
 	    */
+
+	public abstract Disparo crearDisparo(float x, float y);
+
 	public boolean verificarDestruccion() {
 		return destroyed;
 	}

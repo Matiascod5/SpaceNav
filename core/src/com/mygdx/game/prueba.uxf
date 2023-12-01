@@ -1,0 +1,112 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>0</x><y>660</y><w>210</w><h>330</h></coordinates><panel_attributes>PantallaMenu
+--
+- game: SpaceNavigation
+- camera: OrthographicCamera
+- cursorTexture: Texture
+- cursorSprite: Sprite
+- cursorX: float
+- cursorY: float
+- opcionSeleccionada: int
+- optionY: float[]
+- numOptions: int
+- backgroundTexture: Texture
+- backgroundSprite: Sprite
+--
++ PantallaMenu(game: SpaceNavigation)
++ render(delta: float): void 
++ show(): void
++ resize(width: int, height: int): void
++ pause(): void  
++ resume(): void
++ hide(): void
++ dispose(): void
+- handleKeyPress(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>460</x><y>0</y><w>210</w><h>510</h></coordinates><panel_attributes>PantallaJuego            
+--
+- game: SpaceNavigation 
+- score: int  
+- ronda: int
+- itemSpawn: boolean
+- camera: OrthographicCamera
+- batch: SpriteBatch
+- numRandom: Random
+- item: Item
+- musicaActivada: boolean
+- Colisiones: Colisiones
+- nivel: Niveles
+- menuPausaBuilder: MenuBuilder
+- directorMenu: DirectorMenu
+- menuPausa: Menu
+- director: DirectorNave
+- builder: NaveBuilder
+- nave: Nave
+--
++ spawnItem(): void
++ gameOver(): void
++ winScreen(): void
++ dibujaEncabezado(): void
++ sumarScore(score: int): void
++ getScore(): int
++ seleccionarNivel(ronda: int): void
++ PantallaJuego(game: SpaceNavigation, ronda: int, vidas: int, score: int)
++ render(delta: float): void
++ show(): void
++ resize(width: int, height: int): void
++ pause(): void
++ resume(): void
++ hide(): void
++ dispose(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>980</y><w>210</w><h>350</h></coordinates><panel_attributes>PantallaMercado
+--
+- game: SpaceNavigation
+- camera: OrthographicCamera
+- cursorTexture: Texture
+- cursorSprite: Sprite
+- backgroundTexture: Texture
+- backgroundSprite: Sprite
+- cursorX: float
+- cursorY: float
+- opcionSeleccionada: int
+- optionY: float[]
+- numOptions: int
+--
++ PantallaMercado(game: SpaceNavigation)
++ render(delta: float): void
++ show(): void
++ resize(width: int, height: int): void
++ pause(): void
++ resume(): void
++ hide(): void
++ dispose(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>570</y><w>210</w><h>380</h></coordinates><panel_attributes>PantallaOpciones
+--
+- game: SpaceNavigation
+- camera: OrthographicCamera
+- cursorTexture: Texture
+- cursorSprite: Sprite
+- cursorX: float
+- cursorY: float
+- gameMusic: Music
+- opcionSeleccionada: int
+- optionY: float[]
+- numOptions: int
+- backgroundTexture: Texture
+- backgroundSprite: Sprite
+- volumen: float
+- musicaActivada: boolean
+--
++ PantallaOpciones(game: SpaceNavigation)
++ render(delta: float): void
++ show(): void
++ resize(width: int, height: int): void
++ pause(): void
++ resume(): void
++ hide(): void
++ dispose(): void
+- handleKeyPress(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>500</y><w>280</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>260;10;10;240</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1080</x><y>390</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
++ construirNaveDefault(builder: Builder): void
++ construirNaveStarWars(builder: Builder): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>940</x><y>480</y><w>160</w><h>210</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>140;10;10;190</additional_attributes></element></diagram>

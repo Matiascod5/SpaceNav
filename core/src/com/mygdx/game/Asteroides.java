@@ -6,13 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public abstract class Asteroides extends Enemigo{
 	int x = getX();
 	int y = getY();
-	//private Sprite sprite;
 	
 	public Asteroides(Sprite sprite, int xVel, int yVel) {
 		super(sprite, xVel, yVel);
 	}
-
-	//movimiento
 
 	public void movimiento() {
        

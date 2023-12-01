@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class asteroide_SMALL extends Asteroides{
-	
 	public asteroide_SMALL() {
 		super(new Sprite(new Texture(Gdx.files.internal("aGreySmall.png"))), 3, 3);
 	}

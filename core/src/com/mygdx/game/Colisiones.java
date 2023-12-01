@@ -1,19 +1,14 @@
 package com.mygdx.game;
-//import com.badlogic.gdx.math.Rectangle;
-//import com.mygdx.game.Enemigo;
 
 import java.util.ArrayList;
-//import java.util.Random;
-
-//import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Colisiones{
-	private  ArrayList<Enemigo> balls1;
-	private  ArrayList<Enemigo> balls2;
-	private  ArrayList<Disparo> balas;
+	private ArrayList<Enemigo> balls1;
+	private ArrayList<Enemigo> balls2;
+	private ArrayList<Disparo> balas;
 	private int cantEnemigos;
 
 	public Colisiones(){
@@ -24,13 +19,9 @@ public class Colisiones{
 	}
 
 	public void añadirEnemigo(Enemigo enemigo) {
-	    //for (int i = 0; i < cantEnemigos; i++) {
-	        //Ball2 bb = new Ball2(r.nextInt((int)Gdx.graphics.getWidth()),	50+r.nextInt((int)Gdx.graphics.getHeight()-50),	20+r.nextInt(10), xVel+r.nextInt(4), yVel+r.nextInt(4), 
-	  	            //new Texture(Gdx.files.internal("aGreyMedium4.png")));	   
-	  	    balls1.add(enemigo);
-	  	    balls2.add(enemigo);
-			this.cantEnemigos++;
-	  	//}
+	  	balls1.add(enemigo);
+	  	balls2.add(enemigo);
+		this.cantEnemigos++;
 	}
 
 	public void mostrarEnemigo(SpriteBatch batch){
@@ -39,8 +30,6 @@ public class Colisiones{
 			Sprite sprite = enemigo.getSprite();
 			sprite.draw(batch);
 		}
-		//Sprite sprite = getSprite();
-		//sprite.draw(batch);
 	}
     
     public void colisionesEnemigos() {
@@ -53,20 +42,8 @@ public class Colisiones{
 		        }
 		    }
 		} 
-
 	}
 
-	/*public void verificarColisionNave(Nave nave, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2) {
-    	for (int i = 0; i < balls1.size(); i++) {
-    		Enemigo b=balls1.get(i);
-    		if (nave.verificarColisionNave(b)) {
-    			balls1.remove(i);
-             	balls2.remove(i);
-             	i--;
-    		}
-    	}
-    }*/
-	
 	public void checkCollision(Enemigo b1, Enemigo b2) {
         if(b1.getSprite().getBoundingRectangle().overlaps(b2.getSprite().getBoundingRectangle())){
         	// rebote
@@ -86,18 +63,15 @@ public class Colisiones{
 		for (int i = 0 ; i < balls1.size() ; i++){
 			Enemigo b = balls1.get(i);
 			b.movimiento();
-			//b.movimiento(b.getSprite(), b.getX(), b.getY());
-			//Sprite a = b.getSprite();
-			//a.draw(batch);
 			mostrarEnemigo(batch);
-		 }
+		}
 	}
 
 	public boolean verificarColisionEnemigoBala(PantallaJuego game, int score, SpriteBatch batch, Niveles nivel){
 		for (int i = 0; i < balas.size(); i++){
 			Disparo b = balas.get(i);
 			b.movimiento();
-			//verificarColisionEnemigo(b, balls1, balls2, score, explosionSound, batch);
+
 			for (int j = 0; j < balls1.size(); j++) {    
 		    if (verificarColision(balls1.get(j), b)) {          
 		        nivel.getStrategy().Explosion();
@@ -112,7 +86,6 @@ public class Colisiones{
 		    if (b.verificarDestruccion()) {
 		        balas.remove(b);
 		        i--; //para no saltarse 1 tras eliminar del arraylist
-				//this.cantEnemigos--;
 				if (cantEnemigos <= 0) return true;
 		    }
 		}
@@ -172,7 +145,6 @@ public class Colisiones{
 	}
 
 	public void verificarColisionEnemigo(Disparo b, ArrayList<Enemigo> balls1, ArrayList<Enemigo> balls2, int score, Sound explosionSound, SpriteBatch batch){
-		    //b.movimiento();
 		for (int j = 0; j < balls1.size(); j++) {    
 		    if (verificarColision(balls1.get(j), b)) {          
 		        explosionSound.play();
@@ -198,7 +170,6 @@ public class Colisiones{
 	public boolean verificarColisionNaveItem(Item b, Nave a, PantallaJuego game) {
     	if(!a.getHerido() && b.getArea().overlaps(a.getSprite().getBoundingRectangle())){
         	// rebote
-			//this = b.efectoEspecial(this);
 			b.dispose();
             // despegar sprites
            int cont = 0;
@@ -206,7 +177,6 @@ public class Colisiones{
                a.getSprite().setX(a.getSprite().getX()+Math.signum(a.getxVel()));
             } 
         	//actualizar vidas y herir
-  		    //tiempoHerido=tiempoHeridoMax;
 			
 			a.setTiempoHerido(a.getTiempoHeridoMax());
   		    b.getSonidoItem().play();
@@ -224,25 +194,4 @@ public class Colisiones{
 	public void setCantEnemigos(int cantEnemigos){
 		this.cantEnemigos = cantEnemigos;
 	}
-	
-	/*
-		public void checkCollision(Enemigo b2) {
-        if(sprite.getBoundingRectangle().overlaps(b2.sprite.getBoundingRectangle())){
-        	// rebote
-            if (getxVel() ==0) setxVel(getxVel() + b2.getxVel()/2);
-            if (b2.getxVel() ==0) b2.setxVel(b2.getxVel() + getxVel()/2);
-        	setxVel(- getxVel());
-            b2.setxVel(-b2.getxVel());
-            
-            if (getyVel() ==0) setyVel(getyVel() + b2.getyVel()/2);
-            if (b2.getyVel() ==0) b2.setyVel(b2.getyVel() + getyVel()/2);
-            setyVel(- getyVel());
-            b2.setyVel(- b2.getyVel()); 
-        }
-    }
-	
-	public Rectangle getArea() {
-    	return sprite.getBoundingRectangle();
-    }*/
-
 }

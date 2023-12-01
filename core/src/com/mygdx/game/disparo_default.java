@@ -36,4 +36,9 @@ public class disparo_default extends Disparo{
 			setDestroyed(true);
 		}     
 	}
+
+	public Disparo crearDisparo(float x, float y){
+		Disparo disparo = new disparo_default(x,y);
+		return disparo;
+	}
 }

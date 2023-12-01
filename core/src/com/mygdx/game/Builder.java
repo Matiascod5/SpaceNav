@@ -12,5 +12,4 @@ public interface Builder {
     void setSonidoHerido(Sound sonidoHerido);
     void setTiempoHeridoMax(int tiempoHeridoMax);
     void setDisparo(Disparo disparo);
-    //Nave getNave();
 }

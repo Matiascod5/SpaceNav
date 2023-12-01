@@ -33,5 +33,10 @@ public class DisparoStarWars extends Disparo {
 			setDestroyed(true);
 		}     
 	}
+
+	public Disparo crearDisparo(float x, float y){
+		Disparo disparo = new DisparoStarWars(x,y);
+		return disparo;
+	}
     
 }

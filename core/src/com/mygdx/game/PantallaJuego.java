@@ -31,9 +31,9 @@ public class PantallaJuego implements Screen {
 	private Niveles nivel = new Niveles();
 	//private NivelesStrategy strategy = new NivelEspacio();
 
-	private MenuBuilder menuPausaBuilder = new MenuPausaBuilder();
-    private DirectorMenu directorMenu = new DirectorMenu() ;
-    private Menu menuPausa;
+	//private MenuBuilder menuPausaBuilder = new MenuPausaBuilder();
+    //private DirectorMenu directorMenu = new DirectorMenu() ;
+    //private Menu menuPausa;
 
 	private DirectorNave director = new DirectorNave();
 	private NaveBuilder builder = new NaveBuilder();
@@ -107,7 +107,7 @@ public class PantallaJuego implements Screen {
 		this.score = score;
 		this.musicaActivada = Preferences.getMusicaActivada();
 
-		director.construirNaveStarWars(builder);
+		director.construirNaveDefault(builder);
 		this.nave = builder.getNave(); // editar nave aqui
 
 		batch = game.getBatch();

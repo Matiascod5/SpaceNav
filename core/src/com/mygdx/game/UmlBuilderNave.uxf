@@ -1,0 +1,9 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>40</x><y>128</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;DirectorNave&gt;&gt;
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>128</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Builder&gt;&gt;
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>192</x><y>192</y><w>176</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;200;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>384</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;NaveBuilder&gt;&gt;
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>272</y><w>24</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>512</x><y>464</y><w>176</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>200;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>672</x><y>384</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Nave&gt;&gt;
+--
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

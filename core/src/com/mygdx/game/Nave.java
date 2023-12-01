@@ -143,7 +143,8 @@ public class Nave {
 	public void disparar(SpriteBatch batch, Colisiones Colisiones, Builder builder) {
 		//x = sprite.getX() + sprite.getWidth()/2-5;
 		//y = sprite.getY()+ sprite.getHeight()-5;
-        Disparo bala = new Disparo(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5, this.xVel, this.yVel, this.spr, this.disparo);
+		Disparo bala = disparo.crearDisparo(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5);
+        //Disparo bala = new Disparo(getSprite().getX() + getSprite().getWidth()/2-5, getSprite().getY()+ getSprite().getHeight()-5, this.xVel, this.yVel, this.spr, this.disparo);
 	    //cambiar forma de disparar.
 		Colisiones.agregarBala(bala);
 		bala.mostrar(batch);
