@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 //import com.badlogic.gdx.utils.ScreenUtils;
 
 
-public class PantallaJuego implements Screen {
+public class PantallaJuego implements Screen{
 
 	private SpaceNavigation game;
 	private int score;
@@ -40,6 +40,10 @@ public class PantallaJuego implements Screen {
 	private NaveBuilder builder = new NaveBuilder();
 	private Nave nave;
 
+	public void setJuegoPausado(boolean juegoPausado){
+		this.juegoPausado = juegoPausado;
+	}
+
 	public void spawnItem(){
 		numRandom = new Random();
 		int numAleatorio = numRandom.nextInt(3) + 1;
@@ -53,19 +57,19 @@ public class PantallaJuego implements Screen {
 	public void gameOver(){
 		if (score > game.getHighScore()){
   			game.setHighScore(score);
-	    	Screen ss = new PantallaGameOver(game);
+	    	Screen ss = new PantallaGameOver(game, nave);
   			ss.resize(1200, 800);
   			game.setScreen(ss);
   			dispose();
 		}
-		Screen ss = new PantallaGameOver(game);
+		Screen ss = new PantallaGameOver(game, nave);
   		ss.resize(1200, 800);
   		game.setScreen(ss);
   		dispose();
 	}
 
 	public void winScreen(){
-		Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score);
+		Screen ss = new PantallaJuego(game,ronda+1, nave.getVidas(), score, nave);
 		ss.resize(1200, 800);
 		game.setScreen(ss);
 		dispose();
@@ -108,14 +112,19 @@ public class PantallaJuego implements Screen {
 		}
 	}
 
-	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score){
+	public PantallaJuego(SpaceNavigation game, int ronda, int vidas, int score, Nave naveNueva){
 		this.game = game;
 		this.ronda = ronda;
 		this.score = score;
 		this.musicaActivada = Preferences.getMusicaActivada();
 
-		director.construirNaveDefault(builder);
-		this.nave = builder.getNave(); // editar nave aqui
+		if(naveNueva == null){
+			director.construirNaveDefault(builder);
+			this.nave = builder.getNave(); // editar nave aqui
+		}
+		else{
+			this.nave = naveNueva;
+		}
 
 		directorMenu.construirMenuPausa(menuPausaBuilder);
 		this.menuPausa = menuPausaBuilder.construirMenu();
@@ -191,11 +200,13 @@ public class PantallaJuego implements Screen {
 			batch.end();
 			
 			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-				juegoPausado = true;
+				setJuegoPausado(true);
 			}	 
 
 		}
-		menuPausa.mostrar(batch);
+		else{
+			menuPausa.mostrar(batch, this, game, nave);
+		}
 	}
 	
 	@Override

@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -21,8 +22,9 @@ public class MenuPausa implements Menu {
     }
 
     @Override
-    public void mostrar(SpriteBatch spriteBatch) {
+    public void mostrar(SpriteBatch spriteBatch, Screen game, SpaceNavigation juego, Nave nave) {
         // Dibujar el fondo
+        spriteBatch.begin();
         spriteBatch.draw(fondoSprite, (Gdx.graphics.getWidth() - fondoSprite.getWidth()) / 2, (Gdx.graphics.getHeight() - fondoSprite.getHeight()) / 2);
 
         // Dibujar el título "Pausa"
@@ -42,33 +44,43 @@ public class MenuPausa implements Menu {
         font.setColor(Color.YELLOW); // Color de resaltado
         font.draw(spriteBatch, opciones[opcionSeleccionada], (Gdx.graphics.getWidth() - layout.width) / 2, resaltadoY);
         font.setColor(Color.WHITE);
+        spriteBatch.end();
+        seleccionarOpcion((PantallaJuego)game, juego, nave);
     }
 
-    @Override
-    public String seleccionarOpcion() {
+    
+    public String seleccionarOpcion(PantallaJuego game, SpaceNavigation juego, Nave nave) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             opcionSeleccionada = Math.max(0, opcionSeleccionada - 1);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
             opcionSeleccionada = Math.min(opciones.length - 1, opcionSeleccionada + 1);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             // Realizar la acción correspondiente a la opción seleccionada
-            return ejecutarAccion();
+            return ejecutarAccion(game, juego, nave);
         }
 
         return null;
     }
 
-    private String ejecutarAccion() {
+    private String ejecutarAccion(PantallaJuego game, SpaceNavigation juego, Nave nave) {
         switch (opcionSeleccionada) {
             case 0:
                 // Resumir juego
-                juegoPausado = false;
+                game.setJuegoPausado(false);
                 return "Resumir juego";
             case 1:
                 // Acción para la segunda opción
+                Screen ss = new PantallaJuego(juego,1,3,0,nave);
+				ss.resize(1200, 800);
+				juego.setScreen(ss);
+				game.dispose();
                 return "Reiniciar juego";
             case 2:
                 // Acción para la tercera opción
+                Screen jj = new PantallaMenu(juego, nave);
+				jj.resize(1200, 800);
+				juego.setScreen(jj);
+				game.dispose();
                 return "Salir al menú principal";
             default:
                 return null;

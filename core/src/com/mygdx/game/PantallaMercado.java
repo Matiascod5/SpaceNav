@@ -21,9 +21,22 @@ public class PantallaMercado implements Screen {
     private int opcionSeleccionada = 1;
     private float[] optionY = {550,450,350,100};
     private int numOptions = optionY.length;
+    private Nave nave;
+	private boolean juegoPausado = false;
+    private MenuBuilder constructor = new MenuNavesBuilder();
+    private DirectorMenu directorMenu = new DirectorMenu() ;
+    private Menu menuPausa;
 
-    public PantallaMercado(SpaceNavigation game) {
+    public void setJuegoPausado(boolean juegoPausado){
+		this.juegoPausado = juegoPausado;
+	}
+
+    public PantallaMercado(SpaceNavigation game, Nave naveNueva) {
         this.game = game;
+        this.nave = naveNueva;
+
+        directorMenu.construirMenuNaves(constructor);
+		this.menuPausa = constructor.construirMenu();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1200, 800);
@@ -45,60 +58,62 @@ public class PantallaMercado implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0.2f, 1);
+        if(!juegoPausado){
+            ScreenUtils.clear(0, 0, 0.2f, 1);
 
-        camera.update();
-        game.getBatch().setProjectionMatrix(camera.combined);
+            camera.update();
+            game.getBatch().setProjectionMatrix(camera.combined);
 
-        game.getBatch().begin();
-        backgroundSprite.draw(game.getBatch());
-        game.getFont().draw(game.getBatch(), "Pantalla Mercado ", 200, 800, 800, 1, true);
+            game.getBatch().begin();
+            backgroundSprite.draw(game.getBatch());
+            game.getFont().draw(game.getBatch(), "Pantalla Mercado ", 200, 800, 800, 1, true);
 
-        game.getFont().draw(game.getBatch(), "Comprar Naves", 120, 600);
-        game.getFont().draw(game.getBatch(), "Comprar Fondos", 120, 500);
-        game.getFont().draw(game.getBatch(), "Comprar musica", 120, 400);
+            game.getFont().draw(game.getBatch(), "Comprar Naves", 120, 600);
+            game.getFont().draw(game.getBatch(), "Comprar Fondos", 120, 500);
+            game.getFont().draw(game.getBatch(), "Comprar musica", 120, 400);
 
-        game.getFont().draw(game.getBatch(), "Mejoras", 120, 700);
-        game.getFont().draw(game.getBatch(), "Volver al menu principal", 130, 150);
+            game.getFont().draw(game.getBatch(), "Mejoras", 120, 700);
+            game.getFont().draw(game.getBatch(), "Volver al menu principal", 130, 150);
 
-        cursorSprite.draw(game.getBatch());
+            cursorSprite.draw(game.getBatch());
 
-        game.getBatch().end();
+            game.getBatch().end();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
-            opcionSeleccionada--;
-            if (opcionSeleccionada < 1) {
-                opcionSeleccionada = numOptions; // Si es la primera opción, vuelve a la última
+            if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+                opcionSeleccionada--;
+                if (opcionSeleccionada < 1) {
+                    opcionSeleccionada = numOptions; // Si es la primera opción, vuelve a la última
+                }
+                cursorY = optionY[opcionSeleccionada - 1];
             }
-            cursorY = optionY[opcionSeleccionada - 1];
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
-            opcionSeleccionada++;
-            if (opcionSeleccionada > numOptions) {
-                opcionSeleccionada = 1; // Si es la última opción, vuelve a la primera
+            if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+                opcionSeleccionada++;
+                if (opcionSeleccionada > numOptions) {
+                    opcionSeleccionada = 1; // Si es la última opción, vuelve a la primera
+                }
+                cursorY = optionY[opcionSeleccionada - 1];
             }
-            cursorY = optionY[opcionSeleccionada - 1];
-        }
 
-        cursorSprite.setPosition(cursorX, cursorY);
+            cursorSprite.setPosition(cursorX, cursorY);
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            // El usuario ha presionado la tecla "Enter", por lo que desea seleccionar la opción actual.
-            if (opcionSeleccionada == 1) {
-                Screen ss = new PantallaJuego(game, 1, 3, 0);
-                ss.resize(1200, 800);
-                game.setScreen(ss);
-                dispose();
-            } else if (opcionSeleccionada == 2) {
-                // Realizar acciones relacionadas con la opción 2
-                // ...
-            } else if (opcionSeleccionada == 4) {
-            	Screen ss = new PantallaMenu(game);
-                ss.resize(1200, 800);
-                game.setScreen(ss);
-                dispose();
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                // El usuario ha presionado la tecla "Enter", por lo que desea seleccionar la opción actual.
+                if (opcionSeleccionada == 1) {
+                    setJuegoPausado(true);
+                } else if (opcionSeleccionada == 2) {
+                    // Realizar acciones relacionadas con la opción 2
+                    // ...
+                } else if (opcionSeleccionada == 4) {
+                    Screen ss = new PantallaMenu(game, nave);
+                    ss.resize(1200, 800);
+                    game.setScreen(ss);
+                    dispose();
+                }
             }
         }
+        else{
+            menuPausa.mostrar(game.getBatch(), this, game, nave);
+        }    
     }
 
     @Override

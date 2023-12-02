@@ -47,7 +47,7 @@ public class Colisiones{
 		}	
 	}
     
-	public void colisionSpawn(Enemigo b){
+	/*public void colisionSpawn(Enemigo b){
 		Enemigo b2;
 		
 		for (int k = 0 ; k < balls1.size(); k++){
@@ -60,7 +60,7 @@ public class Colisiones{
 			//}
 		}
 			
-	}
+	} */
 
     public void colisionesEnemigos() {
 		for (int i = 0 ; i<balls1.size() ; i++) {

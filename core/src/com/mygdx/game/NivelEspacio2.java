@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class NivelEspacio2 implements NivelesStrategy{
-    private Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("piano-loops.wav"));
+    private Music gameMusic = Gdx.audio.newMusic(Gdx.files.internal("MusicaPelea.mp3"));
     private Sound explosionSound = Gdx.audio.newSound(Gdx.files.internal("explosion.ogg"));
     private Sprite backgroundSprite = new Sprite(new Texture(Gdx.files.internal("Espacio.png")));
     private int cantEnemigos;

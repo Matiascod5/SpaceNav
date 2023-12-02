@@ -19,11 +19,14 @@ public class PantallaMenu implements Screen {
 	private int numOptions = optionY.length; 
 	private Texture backgroundTexture;
 	private Sprite backgroundSprite;
+	private Nave nave;
 
 
 
-	public PantallaMenu(SpaceNavigation game) {
+	public PantallaMenu(SpaceNavigation game, Nave naveNueva) {
 		this.game = game;
+		
+		this.nave = naveNueva;
         
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1200, 800);
@@ -86,17 +89,17 @@ public class PantallaMenu implements Screen {
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
 		    // El usuario ha presionado la tecla "Enter", por lo que desea seleccionar la opción actual.
 		    if (opcionSeleccionada == 1) {
-		    	Screen ss = new PantallaJuego(game,1,3,0);
+		    	Screen ss = new PantallaJuego(game,1,3,0, nave);
 				ss.resize(1200, 800);
 				game.setScreen(ss);
 				dispose();
 		    } else if (opcionSeleccionada == 2) {
-		    	Screen ss = new PantallaMercado(game);
+		    	Screen ss = new PantallaMercado(game, nave);
 				ss.resize(1200, 800);
 				game.setScreen(ss);
 				dispose();
 		    } else if (opcionSeleccionada == 3) {
-		        Screen ss = new PantallaOpciones(game);
+		        Screen ss = new PantallaOpciones(game, nave);
 				ss.resize(1200, 800);
 				game.setScreen(ss);
 				dispose();

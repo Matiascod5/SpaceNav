@@ -11,7 +11,7 @@ public class DirectorMenu {
     }
 
     public void construirMenuNaves(MenuBuilder builder) {
-        builder.construirOpciones(new String[]{"Continuar", "Reiniciar", "Salir"});
+        builder.construirOpciones(new String[]{"NaveDefault", "NaveStarWars", "Salir"});
         builder.construirFondoSprite(new Texture(Gdx.files.internal("CuadroMenu.png")));
         builder.construirMenu();
     }

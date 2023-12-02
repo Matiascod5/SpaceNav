@@ -36,7 +36,7 @@ public class PantallaPausa implements Screen {
 		game.getBatch().end();
 		
 		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			Screen ss = new PantallaMenu(game);
+			Screen ss = new PantallaMenu(game, null);
 			ss.resize(1200, 800);
 			game.setScreen(ss);
 			dispose();

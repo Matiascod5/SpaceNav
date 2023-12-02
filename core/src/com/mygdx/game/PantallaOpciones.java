@@ -27,11 +27,11 @@ public class PantallaOpciones implements Screen {
 	private Sprite backgroundSprite;
 	private float volumen = 1.0f;
 	private boolean musicaActivada = true;
+	private Nave nave;
 
-
-
-	public PantallaOpciones(SpaceNavigation game) {
+	public PantallaOpciones(SpaceNavigation game, Nave naveNueva) {
 		this.game = game;
+		this.nave = naveNueva;
         
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1200, 800);
@@ -131,12 +131,15 @@ public class PantallaOpciones implements Screen {
 		        Preferences.setMusicaActivada(Configuracion.isMusicaActivada());
 		    } else if (opcionSeleccionada == 4) {
 		        // Realizar acciones relacionadas con la opción 4
-				Screen ss = new PantallaMenu(game);
+				Screen ss = new PantallaMenu(game, nave);
 				ss.resize(1200, 800);
 				game.setScreen(ss);
 				dispose();
 		        // ...
 		    }
+			else{
+				
+			}
 		}
 	}
 	
