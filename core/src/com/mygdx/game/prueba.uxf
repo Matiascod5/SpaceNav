@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>3</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>258</x><y>453</y><w>63</w><h>99</h></coordinates><panel_attributes>PantallaMenu
+<diagram program="umletino" version="15.1"><zoom_level>3</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>267</x><y>471</y><w>63</w><h>99</h></coordinates><panel_attributes>PantallaMenu
 --
 - game: SpaceNavigation
 - camera: OrthographicCamera
@@ -20,7 +20,7 @@
 + resume(): void
 + hide(): void
 + dispose(): void
-- handleKeyPress(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>306</x><y>183</y><w>63</w><h>153</h></coordinates><panel_attributes>PantallaJuego            
+- handleKeyPress(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>315</x><y>201</y><w>63</w><h>153</h></coordinates><panel_attributes>PantallaJuego            
 --
 - game: SpaceNavigation 
 - score: int  
@@ -54,7 +54,7 @@
 + pause(): void
 + resume(): void
 + hide(): void
-+ dispose(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>366</x><y>414</y><w>63</w><h>96</h></coordinates><panel_attributes>PantallaMercado
++ dispose(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>375</x><y>432</y><w>63</w><h>96</h></coordinates><panel_attributes>PantallaMercado
 --
 - game: SpaceNavigation
 - camera: OrthographicCamera
@@ -76,7 +76,7 @@
 + resume(): void
 + hide(): void
 + dispose(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>357</x><y>579</y><w>63</w><h>114</h></coordinates><panel_attributes>PantallaOpciones
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>366</x><y>597</y><w>63</w><h>114</h></coordinates><panel_attributes>PantallaOpciones
 --
 - game: SpaceNavigation
 - camera: OrthographicCamera
@@ -101,10 +101,10 @@
 + resume(): void
 + hide(): void
 + dispose(): void
-- handleKeyPress(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>261</x><y>333</y><w>51</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;400</additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>498</y><w>63</w><h>57</h></coordinates><panel_attributes>DirectorNave
+- handleKeyPress(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>351</y><w>51</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;400</additional_attributes></element><element><id>UMLClass</id><coordinates><x>477</x><y>525</y><w>63</w><h>57</h></coordinates><panel_attributes>DirectorNave
 --
 + construirNaveDefault(builder: Builder): void
-+ construirNaveStarWars(builder: Builder): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>426</x><y>462</y><w>60</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>180;220;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>678</x><y>477</y><w>63</w><h>81</h></coordinates><panel_attributes>NaveBuilder
++ construirNaveStarWars(builder: Builder): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>474</x><y>444</y><w>522</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;370;1720;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>687</x><y>495</y><w>63</w><h>81</h></coordinates><panel_attributes>NaveBuilder
 --
 - tipo: TipoNave
 - vidas: int
@@ -122,7 +122,7 @@
 + setSonidoHerido(sonidoHerido: Sound): void
 + setTiempoHeridoMax(tiempoHeridoMax: int): void
 + setDisparo(disparo: Disparo): void
-+ getNave(): Nave</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>573</x><y>504</y><w>63</w><h>57</h></coordinates><panel_attributes>Builder
++ getNave(): Nave</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>582</x><y>522</y><w>63</w><h>57</h></coordinates><panel_attributes>Builder
 --
 + setTipoNave(tipo: TipoNave): void
 + setVidas(vidas: int): void
@@ -130,7 +130,7 @@
 + setSprite(tx: Texture): void
 + setSonidoHerido(sonidoHerido: Sound): void
 + setTiempoHeridoMax(tiempoHeridoMax: int): void
-+ setDisparo(disparo: Disparo): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>738</x><y>525</y><w>48</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>447</y><w>63</w><h>234</h></coordinates><panel_attributes>Nave
++ setDisparo(disparo: Disparo): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>747</x><y>543</y><w>48</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>789</x><y>465</y><w>63</w><h>234</h></coordinates><panel_attributes>Nave
 --
 - vidas: int
 - xVel: float
@@ -182,7 +182,7 @@
 + getSonidoHerido(): Sound
 + getDestruido(): boolean
 + getDisparo(): Disparo
-+ getTipoNave(): TipoNave</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>318</x><y>69</y><w>63</w><h>63</h></coordinates><panel_attributes>PantallaGameOver
++ getTipoNave(): TipoNave</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>327</x><y>87</y><w>63</w><h>63</h></coordinates><panel_attributes>PantallaGameOver
 --
 - game: SpaceNavigation
 - camera: OrthographicCamera
@@ -196,13 +196,13 @@
 + pause(): void
 + resume(): void
 + hide(): void
-+ dispose(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>318</x><y>546</y><w>45</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;300;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>333</x><y>129</y><w>12</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;20;180</additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>132</y><w>63</w><h>57</h></coordinates><panel_attributes>Niveles
++ dispose(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>327</x><y>564</y><w>45</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;300;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>342</x><y>147</y><w>12</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;20;180</additional_attributes></element><element><id>UMLClass</id><coordinates><x>519</x><y>150</y><w>63</w><h>57</h></coordinates><panel_attributes>Niveles
 --
 - strategy: NivelesStrategy
 --
 + crearNivel(colisiones: Colisiones, musicaActivada: boolean, batch: SpriteBatch, ronda: int): void
 + setStrategy(strategy: NivelesStrategy): void
-+ getStrategy(): NivelesStrategy</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>222</y><w>45</w><h>39</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>435</x><y>27</y><w>75</w><h>69</h></coordinates><panel_attributes>NivelEspacio
++ getStrategy(): NivelesStrategy</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>375</x><y>240</y><w>45</w><h>39</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>444</x><y>45</y><w>75</w><h>69</h></coordinates><panel_attributes>NivelEspacio
 --
 - gameMusic: Music
 - explosionSound: Sound
@@ -217,7 +217,7 @@
 + Explosion(): void
 + apagarExplosion(): void
 + mostrarFondo(batch: SpriteBatch): void
-+ borrarFondo(batch: SpriteBatch): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>516</x><y>27</y><w>72</w><h>69</h></coordinates><panel_attributes>NivelEspacio2
++ borrarFondo(batch: SpriteBatch): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>525</x><y>45</y><w>72</w><h>69</h></coordinates><panel_attributes>NivelEspacio2
 --
 - gameMusic: Music
 - explosionSound: Sound
@@ -232,23 +232,7 @@
 + Explosion(): void
 + apagarExplosion(): void
 + mostrarFondo(batch: SpriteBatch): void
-+ borrarFondo(batch: SpriteBatch): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>594</x><y>27</y><w>63</w><h>69</h></coordinates><panel_attributes>NivelHielo
---
-- gameMusic: Music
-- explosionSound: Sound
-- backgroundSprite: Sprite
-- cantEnemigos: int
---
-+ aumentarDificultad(ronda: int): void
-+ crearEnemigos(colisiones: Colisiones): void
-+ Fondo(batch: SpriteBatch): void
-+ Musica(musicaActivada: boolean): void
-+ apagarMusica(): void
-+ apagarExplosion(): void
-+ Explosion(): void
-+ mostrarFondo(batch: SpriteBatch): void
-+ borrarFondo(batch: SpriteBatch): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>669</x><y>27</y><w>63</w><h>69</h></coordinates><panel_attributes>NivelHielo2
++ borrarFondo(batch: SpriteBatch): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>603</x><y>45</y><w>63</w><h>69</h></coordinates><panel_attributes>NivelHielo
 --
 - gameMusic: Music
 - explosionSound: Sound
@@ -264,7 +248,12 @@
 + Explosion(): void
 + mostrarFondo(batch: SpriteBatch): void
 + borrarFondo(batch: SpriteBatch): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>462</x><y>93</y><w>69</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>210;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>528</x><y>93</y><w>27</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;130;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>93</y><w>96</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;130;300;10</additional_attributes></element><element><id>Relation</id><coordinates><x>555</x><y>93</y><w>138</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;130;440;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>405</x><y>183</y><w>63</w><h>45</h></coordinates><panel_attributes>NivelesStrategy
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>678</x><y>45</y><w>63</w><h>69</h></coordinates><panel_attributes>NivelHielo2
+--
+- gameMusic: Music
+- explosionSound: Sound
+- backgroundSprite: Sprite
+- cantEnemigos: int
 --
 + aumentarDificultad(ronda: int): void
 + crearEnemigos(colisiones: Colisiones): void
@@ -274,7 +263,18 @@
 + apagarExplosion(): void
 + Explosion(): void
 + mostrarFondo(batch: SpriteBatch): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>645</y><w>63</w><h>36</h></coordinates><panel_attributes>Configuracion
++ borrarFondo(batch: SpriteBatch): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>471</x><y>111</y><w>69</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>210;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>537</x><y>111</y><w>27</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;130;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>549</x><y>111</y><w>96</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;130;300;10</additional_attributes></element><element><id>Relation</id><coordinates><x>564</x><y>111</y><w>138</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;130;440;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>201</y><w>63</w><h>45</h></coordinates><panel_attributes>NivelesStrategy
+--
++ aumentarDificultad(ronda: int): void
++ crearEnemigos(colisiones: Colisiones): void
++ Fondo(batch: SpriteBatch): void
++ Musica(musicaActivada: boolean): void
++ apagarMusica(): void
++ apagarExplosion(): void
++ Explosion(): void
++ mostrarFondo(batch: SpriteBatch): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>465</x><y>663</y><w>63</w><h>36</h></coordinates><panel_attributes>Configuracion
 --
 - musicaActivada: boolean = true
 - volumenMusica: float = 1.0f
@@ -283,7 +283,7 @@
 + setMusicaActivada(activada: boolean): void
 + getVolumenMusica(): float
 + setVolumenMusica(volumen: float): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>552</x><y>642</y><w>63</w><h>39</h></coordinates><panel_attributes>Preferences
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>561</x><y>660</y><w>63</w><h>39</h></coordinates><panel_attributes>Preferences
 --
 - MUSICA_ACTIVADA_KEY: String = "musicaActivada"
 - VOLUMEN_MUSICA_KEY: String = "volumenMusica"
@@ -292,7 +292,7 @@
 + setMusicaActivada(activada: boolean): void
 + getVolumenMusica(): float
 + setVolumenMusica(volumen: float): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>417</x><y>645</y><w>45</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>516</x><y>651</y><w>42</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>291</y><w>216</w><h>357</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;700;1170</additional_attributes></element><element><id>Relation</id><coordinates><x>318</x><y>465</y><w>54</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>465</x><y>186</y><w>84</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;30;260;10</additional_attributes></element><element><id>Relation</id><coordinates><x>633</x><y>534</y><w>51</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>540</x><y>528</y><w>39</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;110;30</additional_attributes></element><element><id>UMLClass</id><coordinates><x>780</x><y>63</y><w>63</w><h>99</h></coordinates><panel_attributes>Enemigo
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>426</x><y>663</y><w>45</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>525</x><y>669</y><w>42</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>375</x><y>309</y><w>216</w><h>357</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;700;1170</additional_attributes></element><element><id>Relation</id><coordinates><x>327</x><y>483</y><w>54</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;130</additional_attributes></element><element><id>Relation</id><coordinates><x>474</x><y>204</y><w>84</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;30;260;10</additional_attributes></element><element><id>Relation</id><coordinates><x>642</x><y>552</y><w>51</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>537</x><y>552</y><w>51</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;20;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>789</x><y>81</y><w>63</w><h>99</h></coordinates><panel_attributes>Enemigo
 --
 - x: int
 - y: int
@@ -314,32 +314,32 @@
 + getY(): int
 + getxVel(): int
 + getyVel(): int
-+ getSprite(): Sprite</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>705</x><y>93</y><w>81</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>250;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>93</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>520;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>564</x><y>93</y><w>222</w><h>51</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>720;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>498</x><y>93</y><w>288</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>940;180;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>135</y><w>63</w><h>57</h></coordinates><panel_attributes>Asteroide
++ getSprite(): Sprite</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>714</x><y>111</y><w>81</w><h>36</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>250;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>633</x><y>111</y><w>162</w><h>45</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>520;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>573</x><y>111</y><w>222</w><h>51</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>720;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>507</x><y>111</y><w>288</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>940;180;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>909</x><y>153</y><w>63</w><h>57</h></coordinates><panel_attributes>Asteroide
 --
 - x: int
 - y: int
 --
 + Asteroides(sprite: Sprite, xVel: int, yVel: int)
 + movimiento()
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1017</x><y>108</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;Asteroide_Big&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>126</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;Asteroide_Big&gt;&gt;
 
 --
 
-+ asteroide_BIG()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1017</x><y>195</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;AsteroideCongelado_Big&gt;&gt;
++ asteroide_BIG()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>213</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;AsteroideCongelado_Big&gt;&gt;
 
 --
 
-+ AsteroideCongelado_BIG()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1017</x><y>150</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;Asteroide_SMall&gt;&gt;
++ AsteroideCongelado_BIG()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>168</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;Asteroide_SMall&gt;&gt;
 
 --
 
 + asteroide_SMALL()
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1017</x><y>240</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;AsteroideCongelado&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>258</y><w>63</w><h>27</h></coordinates><panel_attributes>&lt;&lt;AsteroideCongelado&gt;&gt;
 
 --
 
-+ AsteroideCongelado()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>123</y><w>63</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;190;10</additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>156</y><w>63</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;30</additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>174</y><w>63</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;120</additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>186</y><w>63</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;240</additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>141</y><w>66</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;200;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>456</x><y>270</y><w>63</w><h>96</h></coordinates><panel_attributes>Colisiones
++ AsteroideCongelado()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>969</x><y>141</y><w>63</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;190;10</additional_attributes></element><element><id>Relation</id><coordinates><x>969</x><y>174</y><w>63</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;30</additional_attributes></element><element><id>Relation</id><coordinates><x>969</x><y>192</y><w>63</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;120</additional_attributes></element><element><id>Relation</id><coordinates><x>969</x><y>204</y><w>63</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;240</additional_attributes></element><element><id>Relation</id><coordinates><x>849</x><y>159</y><w>66</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;200;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>465</x><y>288</y><w>63</w><h>96</h></coordinates><panel_attributes>Colisiones
 --
 - balls1: ArrayList&lt;Enemigo&gt;
 - balls2: ArrayList&lt;Enemigo&gt;
@@ -361,7 +361,7 @@
 + verificarColisionNaveItem(b: Item, a: Nave, game: PantallaJuego): boolean
 + getcantEnemigos(): int
 + setCantEnemigos(cantEnemigos: int): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>273</y><w>96</w><h>51</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>300;150;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>885</x><y>480</y><w>63</w><h>135</h></coordinates><panel_attributes>Disparo
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>375</x><y>291</y><w>96</w><h>51</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>300;150;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>894</x><y>498</y><w>63</w><h>135</h></coordinates><panel_attributes>Disparo
 --
 - x: float
 - y: float
@@ -392,17 +392,17 @@
 + getY(): float
 + abstract movimiento(): void
 + abstract efectoEspecial(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>543</y><w>51</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>987</x><y>486</y><w>63</w><h>24</h></coordinates><panel_attributes>disparo_default
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>849</x><y>561</y><w>51</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>996</x><y>504</y><w>63</w><h>24</h></coordinates><panel_attributes>disparo_default
 --
 + disparo_default(x: float, y: float)
 + efectoEspecial(): void
 + movimiento(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>945</x><y>495</y><w>48</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>990</x><y>576</y><w>63</w><h>24</h></coordinates><panel_attributes>DisparoStarWars
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>954</x><y>513</y><w>48</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>999</x><y>594</y><w>63</w><h>24</h></coordinates><panel_attributes>DisparoStarWars
 --
 + DisparoStarWars(x: float, y: float)
 + efectoEspecial(): void
 + movimiento(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>945</x><y>576</y><w>51</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>150;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>567</x><y>336</y><w>102</w><h>126</h></coordinates><panel_attributes>ItemPuntos
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>954</x><y>594</y><w>51</w><h>18</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>150;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>579</x><y>315</y><w>102</w><h>126</h></coordinates><panel_attributes>ItemPuntos
 --
 - contador: int
 - puntos: int
@@ -432,7 +432,7 @@
 + hide(): void
 + dispose(): void
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>585</x><y>282</y><w>12</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;20;180</additional_attributes></element><element><id>UMLClass</id><coordinates><x>573</x><y>198</y><w>63</w><h>87</h></coordinates><panel_attributes>item
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>594</x><y>300</y><w>15</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;30;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>582</x><y>216</y><w>63</w><h>87</h></coordinates><panel_attributes>item
 
 --
 
@@ -450,7 +450,7 @@
 + efectoEspecial(nave: Nave, game: PantallaJuego): Object
 + hide(): void
 + dispose(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>366</x><y>243</y><w>213</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>690;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>678</x><y>156</y><w>63</w><h>105</h></coordinates><panel_attributes>Heavymachingan
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>375</x><y>261</y><w>213</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>690;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>687</x><y>174</y><w>63</w><h>105</h></coordinates><panel_attributes>Heavymachingan
 --
 - x: int
 - y: int
@@ -474,7 +474,7 @@
 + efectoEspecial(nave: Nave, game: PantallaJuego): Object
 + hide(): void
 + dispose(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>633</x><y>231</y><w>51</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;20;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>729</x><y>279</y><w>63</w><h>105</h></coordinates><panel_attributes>Escudo
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>642</x><y>249</y><w>51</w><h>12</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;20;150;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>771</x><y>207</y><w>63</w><h>105</h></coordinates><panel_attributes>Escudo
 --
 - x: int
 - y: int
@@ -498,7 +498,7 @@
 + efectoEspecial(nave: Nave, game: PantallaJuego): Object
 + hide(): void
 + dispose(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>633</x><y>252</y><w>102</w><h>75</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;320;230</additional_attributes></element><element><id>UMLClass</id><coordinates><x>219</x><y>222</y><w>63</w><h>60</h></coordinates><panel_attributes>SpaceNavigation
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>642</x><y>285</y><w>135</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;430;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>228</x><y>240</y><w>63</w><h>60</h></coordinates><panel_attributes>SpaceNavigation
 --
 - nombreJuego: String
 - batch: SpriteBatch
@@ -512,7 +512,7 @@
 + getFont(): BitmapFont
 + getHighScore(): int
 + setHighScore(highScore: int): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>279</x><y>243</y><w>33</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>219</x><y>135</y><w>63</w><h>57</h></coordinates><panel_attributes>SpaceNav
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>288</x><y>261</y><w>33</w><h>9</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>228</x><y>153</y><w>63</w><h>57</h></coordinates><panel_attributes>SpaceNav
 --
 - batch: SpriteBatch
 - img: Texture
@@ -520,4 +520,61 @@
 + create(): void
 + render(): void
 + dispose(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>189</y><w>9</w><h>39</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>249</x><y>207</y><w>9</w><h>39</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>852</x><y>348</y><w>63</w><h>18</h></coordinates><panel_attributes>Menu
+--
++ mostrar(spriteBatch: SpriteBatch, game: Screen, juego: SpaceNavigation, nave: Nave): void
++ setFondoSprite(fondoSprite: Texture): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>705</x><y>438</y><w>63</w><h>24</h></coordinates><panel_attributes>MenuBuilder
+--
++ construirOpciones(opciones: String[]): void
++ construirFondoSprite(fondoSprite: Texture): void
++ construirMenu(): Menu
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>561</x><y>459</y><w>63</w><h>24</h></coordinates><panel_attributes>DirectorMenu
+--
++ construirMenuPausa(builder: MenuBuilder): void
++ construirMenuNaves(builder: MenuBuilder): void
++ construirMenuSonido(builder: MenuBuilder): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>861</x><y>405</y><w>63</w><h>57</h></coordinates><panel_attributes>MenuNavesBuilder
+--
+- opciones: String[]
+- fondoSprite: Texture
+--
++ construirOpciones(opciones: String[]): void
++ construirFondoSprite(fondoSprite: Texture): void
++ construirMenu(): Menu
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>735</x><y>330</y><w>63</w><h>33</h></coordinates><panel_attributes>MenuPausaBuilder
+--
+- opciones: String[]
+- fondoSprite: Texture
+--
++ construirOpciones(opciones: String[]): void
++ construirFondoSprite(fondoSprite: Texture): void
++ construirMenu(): Menu
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>375</x><y>330</y><w>192</w><h>147</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>620;470;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>435</x><y>465</y><w>132</w><h>15</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>420;30;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>621</x><y>447</y><w>90</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;80;280;10</additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>360</y><w>9</w><h>93</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;290;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>765</x><y>438</y><w>102</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;320;10</additional_attributes></element><element><id>Relation</id><coordinates><x>795</x><y>270</y><w>144</w><h>78</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>460;10;10;240</additional_attributes></element><element><id>Relation</id><coordinates><x>921</x><y>414</y><w>75</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>230;10;10;50</additional_attributes></element><element><id>UMLClass</id><coordinates><x>990</x><y>405</y><w>63</w><h>57</h></coordinates><panel_attributes>MenuNaves
+--
+- opciones: String[]
+- fondoSprite: Texture
+- font: BitmapFont
+- layout: GlyphLayout
+- opcionSeleccionada: int
+- director: DirectorNave
+- builder: NaveBuilder
+--
++ MenuNaves(opciones: String[])
++ mostrar(spriteBatch: SpriteBatch, game: Screen, juego: SpaceNavigation, nave: Nave): void
++ seleccionarOpcion(game: PantallaMercado, juego: SpaceNavigation, nave: Nave): String
++ ejecutarAccion(game: PantallaMercado, juego: SpaceNavigation, nave: Nave): String
++ setFondoSprite(fondoSprite: Texture): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>933</x><y>264</y><w>63</w><h>57</h></coordinates><panel_attributes>MenuPausa
+--
+- opciones: String[]
+- fondoSprite: Texture
+- font: BitmapFont
+- layout: GlyphLayout
+- opcionSeleccionada: int
+--
++ MenuPausa(opciones: String[])
++ mostrar(spriteBatch: SpriteBatch, game: Screen, juego: SpaceNavigation, nave: Nave): void
++ seleccionarOpcion(game: PantallaJuego, juego: SpaceNavigation, nave: Nave): String
++ ejecutarAccion(game: PantallaJuego, juego: SpaceNavigation, nave: Nave): String
++ setFondoSprite(fondoSprite: Texture): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>912</x><y>309</y><w>27</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;160;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>912</x><y>363</y><w>84</w><h>48</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;260;140</additional_attributes></element><element><id>Relation</id><coordinates><x>375</x><y>300</y><w>420</w><h>213</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;1380;690</additional_attributes></element><element><id>Relation</id><coordinates><x>435</x><y>357</y><w>423</w><h>105</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;330;1390;10</additional_attributes></element></diagram>
